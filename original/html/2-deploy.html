@@ -1,0 +1,209 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>배포 (API · MCP)</title>
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/geist/400.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/geist/500.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/geist/600.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/geist-mono/400.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/geist-mono/500.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/ibm-plex-sans-kr/400.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/ibm-plex-sans-kr/500.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/ibm-plex-sans-kr/600.css">
+<style>
+body{margin:0}
+a{color:#4f46e5}a:hover{color:#3730a3}
+</style></head><body>
+
+<div style="width:100%; height:960px; box-sizing:border-box; background:#f6f7f9; color:#0b1220; font-family:'Geist','IBM Plex Sans KR',system-ui,sans-serif; font-size:14px; display:flex; flex-direction:column">
+
+<header style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:12px 24px; background:linear-gradient(180deg,#ffffff,#fafbfc); border-bottom:1px solid #e6e8ec">
+<div style="display:flex; align-items:center; gap:12px">
+<div style="width:28px; height:28px; border-radius:8px; background:#111827; color:#7b8db5; border:1px solid #1f2937; display:flex; align-items:center; justify-content:center; font-family:'Geist Mono',ui-monospace,monospace; font-size:13px; font-weight:600">A</div>
+<div style="display:flex; flex-direction:column">
+<div style="font-weight:600; letter-spacing:-0.01em">MES API Platform</div>
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; color:#5a677d">MFG Analytics · 배포</div>
+</div>
+</div>
+<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+<div style="font-size:16px; font-weight:600; letter-spacing:-0.01em">Lot 수율 · 공정 이력 분석</div>
+<span style="padding:2px 10px; border-radius:999px; background:#eef2ff; color:#4338ca; font-size:12px; font-weight:500">v1 · 신규 배포</span>
+</div>
+<a href="1-workflow-editor.html" style="height:44px; padding:0 16px; border-radius:12px; border:1px solid #d6dae1; background:#ffffff; color:#0b1220; text-decoration:none; font-weight:500; display:inline-flex; align-items:center; box-sizing:border-box">에디터로 돌아가기</a>
+</header>
+
+<main style="flex:1; min-height:0; overflow:auto; display:flex; flex-wrap:wrap; gap:16px; padding:16px 24px 24px; align-items:flex-start; align-content:flex-start">
+
+<section style="flex:999 1 600px; min-width:0; display:flex; flex-direction:column; gap:12px">
+
+<div style="display:flex; flex-direction:column; gap:8px">
+<div style="font-size:13px; font-weight:600; color:#475569">배포 대상 · 둘 다 선택할 수 있어요</div>
+<div style="display:flex; flex-direction:column; gap:12px">
+<div style="border:2px solid #4f46e5; background:#f5f6ff; border-radius:14px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)">
+<button aria-pressed="true" style="flex:none; width:100%; box-sizing:border-box; text-align:left; border:0; background:transparent; padding:16px; display:flex; gap:14px; align-items:flex-start; font:inherit; color:#0b1220">
+<span style="width:22px; height:22px; box-sizing:border-box; border-radius:6px; border:2px solid #4f46e5; background:#4f46e5; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="opacity:1"><path d="M2 6.5l2.5 2.5L10 3" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span style="display:flex; flex-direction:column; gap:6px">
+<span style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+<span style="font-weight:600; font-size:15px">API로 배포</span>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; padding:2px 8px; border-radius:6px; background:#e0f2fe; color:#075985; white-space:nowrap">REST · OpenAPI 3.1</span>
+</span>
+<span style="font-size:13px; color:#475569; line-height:1.5">경로가 생기고 Swagger 명세가 자동으로 만들어집니다. 사내 시스템이 HTTP로 호출합니다.</span>
+</span>
+</button>
+
+
+<div style="margin:0 16px; padding-bottom:6px; background:transparent">
+<div style="display:grid; grid-template-columns:132px minmax(0,1fr); gap:12px; align-items:start; padding:9px 0; border-top:1px solid #eef0f3">
+<div style="font-size:12px; color:#5a677d; padding-top:2px">호출 경로</div>
+<div style="font-size:13px; min-width:0"><span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; padding:2px 8px; border-radius:6px; background:#dcfce7; color:#166534; white-space:nowrap">POST</span> <span style="font-family:'Geist Mono',ui-monospace,monospace">/api/workflow/lot_yield_equip</span></div>
+</div>
+<div style="display:grid; grid-template-columns:132px minmax(0,1fr); gap:12px; align-items:start; padding:9px 0; border-top:1px solid #eef0f3">
+<div style="font-size:12px; color:#5a677d; padding-top:2px">api_id</div>
+<div style="font-size:13px; min-width:0"><span style="font-family:'Geist Mono',ui-monospace,monospace">lot_yield_equip</span> <span style="font-size:11px; padding:2px 8px; border-radius:999px; background:#dcfce7; color:#166534; font-weight:500; white-space:nowrap">사용 가능</span></div>
+</div>
+<div style="display:grid; grid-template-columns:132px minmax(0,1fr); gap:12px; align-items:start; padding:9px 0; border-top:1px solid #eef0f3">
+<div style="font-size:12px; color:#5a677d; padding-top:2px">워크스페이스</div>
+<div style="font-size:13px; min-width:0">MFG Analytics</div>
+</div>
+<div style="display:grid; grid-template-columns:132px minmax(0,1fr); gap:12px; align-items:start; padding:9px 0; border-top:1px solid #eef0f3">
+<div style="font-size:12px; color:#5a677d; padding-top:2px">인증</div>
+<div style="font-size:13px; min-width:0">사내 토큰 (Bearer)</div>
+</div>
+<div style="display:grid; grid-template-columns:132px minmax(0,1fr); gap:12px; align-items:start; padding:9px 0; border-top:1px solid #eef0f3">
+<div style="font-size:12px; color:#5a677d; padding-top:2px">Swagger UI 공개</div>
+<div style="font-size:13px; min-width:0"><span style="font-size:11px; padding:2px 8px; border-radius:999px; background:#dcfce7; color:#166534; font-weight:500; white-space:nowrap">켜짐 · 사내망</span></div>
+</div>
+<div style="display:grid; grid-template-columns:132px minmax(0,1fr); gap:12px; align-items:start; padding:9px 0; border-top:1px solid #eef0f3">
+<div style="font-size:12px; color:#5a677d; padding-top:2px">타임아웃</div>
+<div style="font-size:13px; min-width:0"><span style="font-family:'Geist Mono',ui-monospace,monospace">30s</span> <span style="font-size:11px; color:#5a677d">노드 실행 전체 기준</span></div>
+</div>
+<div style="display:grid; grid-template-columns:132px minmax(0,1fr); gap:12px; align-items:start; padding:9px 0; border-top:1px solid #eef0f3">
+<div style="font-size:12px; color:#5a677d; padding-top:2px">호출 제한</div>
+<div style="font-size:13px; min-width:0"><span style="font-family:'Geist Mono',ui-monospace,monospace">60회 / 분</span></div>
+</div>
+
+</div>
+
+</div>
+<div style="border:2px solid #4f46e5; background:#f5f6ff; border-radius:14px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)">
+<button aria-pressed="true" style="flex:none; width:100%; box-sizing:border-box; text-align:left; border:0; background:transparent; padding:16px; display:flex; gap:14px; align-items:flex-start; font:inherit; color:#0b1220">
+<span style="width:22px; height:22px; box-sizing:border-box; border-radius:6px; border:2px solid #4f46e5; background:#4f46e5; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" style="opacity:1"><path d="M2 6.5l2.5 2.5L10 3" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span style="display:flex; flex-direction:column; gap:6px">
+<span style="display:flex; align-items:center; gap:8px; flex-wrap:wrap">
+<span style="font-weight:600; font-size:15px">MCP로 배포</span>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; padding:2px 8px; border-radius:6px; background:#eef2ff; color:#4338ca; white-space:nowrap">streamable-http</span>
+</span>
+<span style="font-size:13px; color:#475569; line-height:1.5">워크플로우가 MCP 툴 하나로 노출됩니다. Agent와 Playground가 바로 호출할 수 있어요.</span>
+</span>
+</button>
+
+
+<div style="margin:0 16px; padding-bottom:6px">
+<div style="display:grid; grid-template-columns:132px minmax(0,1fr); gap:12px; align-items:start; padding:9px 0; border-top:1px solid #eef0f3">
+<div style="font-size:12px; color:#5a677d; padding-top:2px">MCP 서버</div>
+<div style="font-size:13px; min-width:0"><span style="font-family:'Geist Mono',ui-monospace,monospace">mes-analytics</span> <span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; padding:2px 8px; border-radius:6px; background:#f4f6f8; color:#475569; white-space:nowrap">기존 호스트</span></div>
+</div>
+<div style="display:grid; grid-template-columns:132px minmax(0,1fr); gap:12px; align-items:start; padding:9px 0; border-top:1px solid #eef0f3">
+<div style="font-size:12px; color:#5a677d; padding-top:2px">툴 이름</div>
+<div style="font-size:13px; min-width:0"><span style="font-family:'Geist Mono',ui-monospace,monospace">get_lot_yield_by_equipment</span></div>
+</div>
+<div style="display:grid; grid-template-columns:132px minmax(0,1fr); gap:12px; align-items:start; padding:9px 0; border-top:1px solid #eef0f3">
+<div style="font-size:12px; color:#5a677d; padding-top:2px">툴 설명</div>
+<div style="font-size:13px; min-width:0"><span style="line-height:1.5">Lot·웨이퍼의 기간별 수율을 장비(equip_id)별로 집계해 반환합니다. 수율 0.95 미만 Lot만 포함합니다.</span></div>
+</div>
+<div style="display:grid; grid-template-columns:132px minmax(0,1fr); gap:12px; align-items:start; padding:9px 0; border-top:1px solid #eef0f3">
+<div style="font-size:12px; color:#5a677d; padding-top:2px">접근 권한</div>
+<div style="font-size:13px; min-width:0">MFG Analytics 워크스페이스 멤버 · Agent</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+<div style="display:flex; flex-direction:column; gap:8px">
+<div style="font-size:13px; font-weight:600; color:#475569">실행 방식 · 여러 Data API를 엮어 오래 걸리면 Job으로 돌려요</div>
+<div style="display:flex; gap:12px">
+<button style="flex:1 1 0; min-width:0; text-align:left; border:2px solid #4f46e5; background:#f5f6ff; border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; font:inherit; color:#0b1220; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)">
+<span style="display:flex; align-items:center; gap:8px; flex-wrap:wrap"><span style="font-weight:600; font-size:15px">바로 실행</span><span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; padding:2px 8px; border-radius:6px; background:#f4f6f8; color:#475569">동기</span></span>
+<span style="font-size:13px; color:#475569; line-height:1.5">호출하면 끝날 때까지 기다렸다가 결과를 바로 돌려줍니다. 몇 초 안에 끝나는 워크플로우에 알맞아요.</span>
+</button>
+<button style="flex:1 1 0; min-width:0; text-align:left; border:2px solid #d6dae1; background:#ffffff; border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; font:inherit; color:#0b1220; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)">
+<span style="display:flex; align-items:center; gap:8px; flex-wrap:wrap"><span style="font-weight:600; font-size:15px">Job으로 실행</span><span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; padding:2px 8px; border-radius:6px; background:#f4f6f8; color:#475569">비동기</span></span>
+<span style="font-size:13px; color:#475569; line-height:1.5">job_id를 바로 돌려주고 뒤에서 실행합니다. 끝나면 웹훅으로 알리거나 job_id로 결과를 조회해요.</span>
+</button>
+</div>
+</div>
+
+</section>
+
+<aside style="flex:1 1 380px; max-width:480px; min-width:0; display:flex; flex-direction:column; gap:12px">
+
+<div style="background:#ffffff; border:1px solid #e6e8ec; border-radius:14px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04); overflow:hidden">
+<div style="display:flex; align-items:center; gap:6px; padding:10px 12px; background:#fafbfc">
+<button aria-pressed="true" style="height:36px; padding:0 12px; border-radius:8px; border:0; background:#eef2ff; color:#4338ca; font:inherit; font-size:13px; font-weight:500">OpenAPI 3.1</button>
+<button aria-pressed="false" style="height:36px; padding:0 12px; border-radius:8px; border:0; background:transparent; color:#475569; font:inherit; font-size:13px; font-weight:500">MCP 툴 스키마</button>
+<span style="margin-left:auto; font-size:12px; color:#5a677d">자동 생성 미리보기</span>
+</div>
+<pre style="margin:0; padding:14px 16px; background:#0f172a; color:#e2e8f0; font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; line-height:1.6; overflow-x:auto; min-height:320px; white-space:pre">openapi: 3.1.0
+info:
+  title: Lot 수율 · 공정 이력 분석
+  version: 1.0.0
+paths:
+  /api/workflow/lot_yield_equip:
+    post:
+      operationId: runLotYieldEquip
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [lot_id, wafer_id, start_time, end_time]
+              properties:
+                lot_id: { type: string }
+                wafer_id: { type: string }
+                start_time: { type: string, format: date-time }
+                end_time: { type: string, format: date-time }
+      responses:
+        "200":
+          description: equip_id별 평균 수율</pre>
+</div>
+
+<div style="background:#ffffff; border:1px solid #e6e8ec; border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:10px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)">
+<div style="font-weight:600">배포 전 확인</div>
+
+<div style="display:flex; align-items:center; gap:10px; font-size:13px">
+<span style="width:20px; height:20px; border-radius:999px; background:#16a34a; display:flex; align-items:center; justify-content:center; flex-shrink:0">
+<svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span style="color:#0b1220">테스트 실행 성공 (1.42s · 4행)</span>
+</div>
+
+<div style="display:flex; align-items:center; gap:10px; font-size:13px">
+<span style="width:20px; height:20px; border-radius:999px; background:#16a34a; display:flex; align-items:center; justify-content:center; flex-shrink:0">
+<svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span style="color:#0b1220">필수 변수 4개 정의 완료</span>
+</div>
+
+<div style="display:flex; align-items:center; gap:10px; font-size:13px">
+<span style="width:20px; height:20px; border-radius:999px; background:#16a34a; display:flex; align-items:center; justify-content:center; flex-shrink:0">
+<svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span style="color:#0b1220">사용한 Data API 2개 모두 배포 상태</span>
+</div>
+
+</div>
+
+<div style="display:flex; flex-direction:column; gap:10px">
+<button style="height:48px; width:100%; border-radius:12px; border:0; background:#4f46e5; color:#ffffff; font:inherit; font-weight:600; font-size:15px">API + MCP 배포하기</button>
+<a href="5-agent-playground.html" style="height:44px; width:100%; box-sizing:border-box; border-radius:12px; border:1px solid #d6dae1; background:#ffffff; color:#0b1220; text-decoration:none; font-weight:500; display:flex; align-items:center; justify-content:center">배포 후 Playground에서 확인</a>
+</div>
+
+</aside>
+
+</main>
+</div>
+</body></html>

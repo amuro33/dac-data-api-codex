@@ -1,0 +1,383 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>Data Workflow 에디터</title>
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/geist/400.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/geist/500.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/geist/600.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/geist-mono/400.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/geist-mono/500.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/ibm-plex-sans-kr/400.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/ibm-plex-sans-kr/500.css">
+<link rel="stylesheet" href="file:///tmp/claude-0/-home-claude/13371d3b-ae63-58c9-bf4a-0adbe0cb20e2/scratchpad/render-tools/node_modules/@fontsource/ibm-plex-sans-kr/600.css">
+<style>
+body{margin:0}
+a{color:#4f46e5}a:hover{color:#3730a3}
+</style></head><body>
+
+<div style="width:100%; height:960px; box-sizing:border-box; background:#f6f7f9; color:#0b1220; font-family:'Geist','IBM Plex Sans KR',system-ui,sans-serif; font-size:14px; display:flex; flex-direction:column">
+
+<header style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:12px 24px; background:linear-gradient(180deg,#ffffff,#fafbfc); border-bottom:1px solid #e6e8ec">
+<div style="display:flex; align-items:center; gap:12px">
+<div style="width:28px; height:28px; border-radius:8px; background:#111827; color:#7b8db5; border:1px solid #1f2937; display:flex; align-items:center; justify-content:center; font-family:'Geist Mono',ui-monospace,monospace; font-size:13px; font-weight:600">A</div>
+<div style="display:flex; flex-direction:column">
+<div style="font-weight:600; letter-spacing:-0.01em">MES API Platform</div>
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; color:#5a677d">MFG Analytics · Data Workflow</div>
+</div>
+</div>
+<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+<div style="font-size:16px; font-weight:600; letter-spacing:-0.01em">Lot 수율 · 공정 이력 분석</div>
+<span style="padding:2px 10px; border-radius:999px; background:#eef2ff; color:#4338ca; font-size:12px; font-weight:500">초안</span>
+<span style="font-size:12px; color:#5a677d">14:52 자동 저장</span>
+</div>
+<div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap">
+<button style="height:44px; padding:0 16px; border-radius:12px; border:1px solid #d6dae1; background:#ffffff; color:#0b1220; font:inherit; font-weight:500; display:inline-flex; align-items:center; gap:8px">
+<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><polygon points="3,2 12,7 3,12" fill="#4f46e5"></polygon></svg>
+테스트 실행
+</button>
+<button style="height:44px; padding:0 16px; border-radius:12px; border:1px solid #d6dae1; background:#ffffff; color:#0b1220; font:inherit; font-weight:500">저장</button>
+<a href="2-deploy.html" style="height:44px; padding:0 18px; border-radius:12px; background:#4f46e5; color:#ffffff; text-decoration:none; font-weight:600; display:inline-flex; align-items:center; gap:8px; box-sizing:border-box">
+<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 12V3M3 6.5l4-4 4 4" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+배포
+</a>
+</div>
+</header>
+
+<main style="flex:1; min-height:0; display:flex; gap:16px; padding:16px 24px; align-items:stretch">
+
+<section style="flex:1 1 0; min-width:0; display:flex; flex-direction:column; gap:12px">
+
+
+<div style="position:relative; flex:1; min-height:0; overflow:auto; display:flex; align-items:center; background-color:#fbfcfd; background-image:radial-gradient(#d6dae1 1px, transparent 1px); background-size:20px 20px; border:1px solid #e6e8ec; border-radius:14px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)">
+<div style="position:absolute; right:12px; bottom:12px; padding:6px 10px; border-radius:8px; background:#ffffff; border:1px solid #e6e8ec; font-size:12px; color:#475569">빈 곳을 우클릭하면 노드를 추가할 수 있어요</div>
+<div style="position:relative; flex:none; width:1000px; height:470px; margin:0 auto">
+
+
+<svg style="position:absolute; left:164px; top:125px" width="40" height="100" viewBox="0 0 40 100" aria-hidden="true"><path d="M0,100 C20,100 20,0 40,0" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg style="position:absolute; left:164px; top:225px" width="40" height="100" viewBox="0 0 40 100" aria-hidden="true"><path d="M0,0 C20,0 20,100 40,100" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg style="position:absolute; left:388px; top:125px" width="40" height="80" viewBox="0 0 40 80" aria-hidden="true"><path d="M0,0 C20,0 20,80 40,80" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg style="position:absolute; left:388px; top:245px" width="40" height="80" viewBox="0 0 40 80" aria-hidden="true"><path d="M0,80 C20,80 20,0 40,0" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg style="position:absolute; left:568px; top:224px" width="30" height="2" viewBox="0 0 30 2" aria-hidden="true"><path d="M0,1 L30,1" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg style="position:absolute; left:718px; top:224px" width="30" height="2" viewBox="0 0 30 2" aria-hidden="true"><path d="M0,1 L30,1" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg style="position:absolute; left:868px; top:224px" width="30" height="2" viewBox="0 0 30 2" aria-hidden="true"><path d="M0,1 L30,1" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+
+<div style="position:absolute; left:16px; top:150px; width:148px; height:150px; box-sizing:border-box; background:#ffffff; border:1px solid #d6dae1; box-shadow:0 1px 2px rgba(15,23,42,0.06), 0 4px 12px rgba(15,23,42,0.04); border-radius:10px; overflow:hidden; display:flex; flex-direction:column">
+<div style="height:30px; flex:none; box-sizing:border-box; padding:0 10px; display:flex; align-items:center; gap:6px; background:#eef2ff; border-bottom:1px solid #c7d2fe">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><polygon points="3,2 10,6 3,10" fill="#4338ca"></polygon></svg>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; font-weight:600; letter-spacing:0.04em; color:#4338ca">START</span>
+<span style="margin-left:auto; display:inline-flex; align-items:center; gap:5px"><span style="width:6px; height:6px; border-radius:999px; background:#16a34a"></span></span>
+</div>
+<div style="padding:8px 10px; display:flex; flex-direction:column; gap:6px; min-height:0">
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; font-family:'Geist Mono',ui-monospace,monospace; font-size:11px">
+<span style="color:#0b1220">lot_id</span>
+<span style="color:#5a677d">string</span>
+</div>
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; font-family:'Geist Mono',ui-monospace,monospace; font-size:11px">
+<span style="color:#0b1220">wafer_id</span>
+<span style="color:#5a677d">string</span>
+</div>
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; font-family:'Geist Mono',ui-monospace,monospace; font-size:11px">
+<span style="color:#0b1220">start_time</span>
+<span style="color:#5a677d">datetime</span>
+</div>
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:6px; font-family:'Geist Mono',ui-monospace,monospace; font-size:11px">
+<span style="color:#0b1220">end_time</span>
+<span style="color:#5a677d">datetime</span>
+</div>
+
+</div>
+</div>
+
+<div style="position:absolute; left:204px; top:50px; width:184px; height:150px; box-sizing:border-box; background:#ffffff; border:2px solid #6366f1; box-shadow:0 0 0 4px rgba(99,102,241,0.22), 0 8px 24px rgba(15,23,42,0.08); border-radius:10px; overflow:hidden; display:flex; flex-direction:column">
+<div style="height:30px; flex:none; box-sizing:border-box; padding:0 10px; display:flex; align-items:center; gap:6px; background:#e0f2fe; border-bottom:1px solid #bae6fd">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><ellipse cx="6" cy="3" rx="4" ry="1.6" fill="none" stroke="#0369a1" stroke-width="1.3"></ellipse><path d="M2 3v6c0 .9 1.8 1.6 4 1.6S10 9.9 10 9V3M2 6c0 .9 1.8 1.6 4 1.6S10 6.9 10 6" fill="none" stroke="#0369a1" stroke-width="1.3"></path></svg>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; font-weight:600; letter-spacing:0.04em; color:#0369a1">DAC</span>
+<span style="margin-left:auto; display:inline-flex; align-items:center; gap:5px"><span style="width:6px; height:6px; border-radius:999px; background:#16a34a"></span><span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:10px; color:#5a677d">0.8s</span></span>
+</div>
+<div style="padding:8px 10px; display:flex; flex-direction:column; gap:6px; min-height:0">
+<div style="font-weight:600; font-size:13px; line-height:18px">수율 요약 조회</div><div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; padding:2px 6px; border-radius:6px; background:#eef2ff; color:#4338ca; align-self:flex-start">wafer_yield_summary</div><div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; line-height:1.5; color:#475569">lot_id, wafer_id<br>← START<br>factory_id = F02</div>
+</div>
+</div>
+
+<div style="position:absolute; left:204px; top:250px; width:184px; height:150px; box-sizing:border-box; background:#ffffff; border:1px solid #d6dae1; box-shadow:0 1px 2px rgba(15,23,42,0.06), 0 4px 12px rgba(15,23,42,0.04); border-radius:10px; overflow:hidden; display:flex; flex-direction:column">
+<div style="height:30px; flex:none; box-sizing:border-box; padding:0 10px; display:flex; align-items:center; gap:6px; background:#e0f2fe; border-bottom:1px solid #bae6fd">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><ellipse cx="6" cy="3" rx="4" ry="1.6" fill="none" stroke="#0369a1" stroke-width="1.3"></ellipse><path d="M2 3v6c0 .9 1.8 1.6 4 1.6S10 9.9 10 9V3M2 6c0 .9 1.8 1.6 4 1.6S10 6.9 10 6" fill="none" stroke="#0369a1" stroke-width="1.3"></path></svg>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; font-weight:600; letter-spacing:0.04em; color:#0369a1">DAC</span>
+<span style="margin-left:auto; display:inline-flex; align-items:center; gap:5px"><span style="width:6px; height:6px; border-radius:999px; background:#16a34a"></span><span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:10px; color:#5a677d">0.6s</span></span>
+</div>
+<div style="padding:8px 10px; display:flex; flex-direction:column; gap:6px; min-height:0">
+<div style="font-weight:600; font-size:13px; line-height:18px">공정 이력 조회</div><div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; padding:2px 6px; border-radius:6px; background:#eef2ff; color:#4338ca; align-self:flex-start">lot_process_history</div><div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; line-height:1.5; color:#475569">start_time, end_time<br>← START</div>
+</div>
+</div>
+
+<div style="position:absolute; left:428px; top:160px; width:140px; height:130px; box-sizing:border-box; background:#ffffff; border:1px solid #d6dae1; box-shadow:0 1px 2px rgba(15,23,42,0.06), 0 4px 12px rgba(15,23,42,0.04); border-radius:10px; overflow:hidden; display:flex; flex-direction:column">
+<div style="height:30px; flex:none; box-sizing:border-box; padding:0 10px; display:flex; align-items:center; gap:6px; background:#fef3c7; border-bottom:1px solid #fde68a">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="4.5" cy="6" r="3" fill="none" stroke="#92400e" stroke-width="1.3"></circle><circle cx="7.5" cy="6" r="3" fill="none" stroke="#92400e" stroke-width="1.3"></circle></svg>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; font-weight:600; letter-spacing:0.04em; color:#92400e">JOIN</span>
+<span style="margin-left:auto; display:inline-flex; align-items:center; gap:5px"><span style="width:6px; height:6px; border-radius:999px; background:#16a34a"></span><span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:10px; color:#5a677d">0.1s</span></span>
+</div>
+<div style="padding:8px 10px; display:flex; flex-direction:column; gap:6px; min-height:0">
+<div style="font-size:11px; color:#5a677d">DuckDB · INNER</div><div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; line-height:1.5; color:#475569">ON lot_id<br>= lot_id</div>
+</div>
+</div>
+
+<div style="position:absolute; left:598px; top:170px; width:120px; height:110px; box-sizing:border-box; background:#ffffff; border:1px solid #d6dae1; box-shadow:0 1px 2px rgba(15,23,42,0.06), 0 4px 12px rgba(15,23,42,0.04); border-radius:10px; overflow:hidden; display:flex; flex-direction:column">
+<div style="height:30px; flex:none; box-sizing:border-box; padding:0 10px; display:flex; align-items:center; gap:6px; background:#fef3c7; border-bottom:1px solid #fde68a">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1.5 2h9L7 6.2V10L5 9V6.2z" fill="none" stroke="#92400e" stroke-width="1.3" stroke-linejoin="round"></path></svg>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; font-weight:600; letter-spacing:0.04em; color:#92400e">Filter</span>
+<span style="margin-left:auto; display:inline-flex; align-items:center; gap:5px"><span style="width:6px; height:6px; border-radius:999px; background:#16a34a"></span></span>
+</div>
+<div style="padding:8px 10px; display:flex; flex-direction:column; gap:6px; min-height:0">
+<div style="font-size:11px; color:#5a677d">DuckDB</div><div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; line-height:1.5; color:#475569">yield &lt; 0.95</div>
+</div>
+</div>
+
+<div style="position:absolute; left:748px; top:170px; width:120px; height:110px; box-sizing:border-box; background:#ffffff; border:1px solid #d6dae1; box-shadow:0 1px 2px rgba(15,23,42,0.06), 0 4px 12px rgba(15,23,42,0.04); border-radius:10px; overflow:hidden; display:flex; flex-direction:column">
+<div style="height:30px; flex:none; box-sizing:border-box; padding:0 10px; display:flex; align-items:center; gap:6px; background:#fef3c7; border-bottom:1px solid #fde68a">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="2" width="9" height="2" rx="1" fill="#92400e"></rect><rect x="1.5" y="5" width="6" height="2" rx="1" fill="#92400e"></rect><rect x="1.5" y="8" width="3.5" height="2" rx="1" fill="#92400e"></rect></svg>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; font-weight:600; letter-spacing:0.04em; color:#92400e">Group By</span>
+<span style="margin-left:auto; display:inline-flex; align-items:center; gap:5px"><span style="width:6px; height:6px; border-radius:999px; background:#16a34a"></span></span>
+</div>
+<div style="padding:8px 10px; display:flex; flex-direction:column; gap:6px; min-height:0">
+<div style="font-size:11px; color:#5a677d">DuckDB</div><div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; line-height:1.5; color:#475569">BY equip_id</div>
+</div>
+</div>
+
+<div style="position:absolute; left:898px; top:190px; width:90px; height:70px; box-sizing:border-box; background:#ffffff; border:1px solid #d6dae1; box-shadow:0 1px 2px rgba(15,23,42,0.06), 0 4px 12px rgba(15,23,42,0.04); border-radius:10px; overflow:hidden; display:flex; flex-direction:column">
+<div style="height:30px; flex:none; box-sizing:border-box; padding:0 10px; display:flex; align-items:center; gap:6px; background:#f1f5f9; border-bottom:1px solid #e2e8f0">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="2.5" y="2.5" width="7" height="7" rx="1.5" fill="#334155"></rect></svg>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; font-weight:600; letter-spacing:0.04em; color:#334155">END</span>
+<span style="margin-left:auto; display:inline-flex; align-items:center; gap:5px"><span style="width:6px; height:6px; border-radius:999px; background:#16a34a"></span></span>
+</div>
+<div style="padding:8px 10px; display:flex; flex-direction:column; gap:6px; min-height:0">
+<div style="font-size:11px; color:#5a677d">출력 4열</div>
+</div>
+</div>
+
+
+<div style="position:absolute; left:159px; top:220px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:199px; top:120px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:199px; top:320px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:383px; top:120px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:383px; top:320px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:423px; top:200px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:423px; top:240px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:563px; top:220px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:593px; top:220px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:713px; top:220px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:743px; top:220px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:863px; top:220px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+<div style="position:absolute; left:893px; top:220px; width:10px; height:10px; box-sizing:border-box; border-radius:999px; border:2px solid #6366f1; background:#ffffff"></div>
+
+
+</div>
+</div>
+
+</section>
+
+<aside style="flex:none; width:360px; overflow-y:auto; background:#ffffff; border:1px solid #e6e8ec; border-radius:14px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04); display:flex; flex-direction:column">
+
+<div style="padding:14px 16px; border-bottom:1px solid #e6e8ec; display:flex; align-items:center; gap:10px">
+<div style="height:28px; padding:0 10px; border-radius:8px; background:#e0f2fe; color:#0369a1; display:flex; align-items:center; font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; font-weight:600; letter-spacing:0.02em">DAC</div>
+<div style="display:flex; flex-direction:column">
+<div style="font-weight:600">수율 요약 조회</div>
+<div style="font-size:12px; color:#5a677d">Data API 노드</div>
+</div>
+</div>
+
+<div style="padding:16px; display:flex; flex-direction:column; gap:18px">
+
+<div style="display:flex; flex-direction:column; gap:8px">
+<div style="display:flex; align-items:center; justify-content:space-between">
+<div style="font-size:12px; font-weight:600; color:#475569">API 선택</div>
+<span style="font-size:12px; padding:2px 10px; border-radius:999px; background:#f4f6f8; color:#475569; font-family:'Geist Mono',ui-monospace,monospace">MFG Analytics</span>
+</div>
+<div style="border:1px solid #6366f1; border-radius:12px; background:#ffffff; box-shadow:0 0 0 3px rgba(99,102,241,0.12), 0 8px 24px rgba(15,23,42,0.08); overflow:hidden">
+<div style="height:44px; box-sizing:border-box; padding:0 12px; display:flex; align-items:center; justify-content:space-between; gap:8px; border-bottom:1px solid #e6e8ec">
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-weight:600; font-size:13px">wafer_yield_summary</div>
+<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 9l4-4 4 4" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div style="padding:8px 8px 0">
+<div style="height:36px; box-sizing:border-box; padding:0 10px; display:flex; align-items:center; gap:8px; border:1px solid #e6e8ec; border-radius:8px; background:#fafbfc; font-size:13px; color:#5a677d">
+<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="none" stroke="#5a677d" stroke-width="1.6"></circle><path d="M9.2 9.2L12 12" stroke="#5a677d" stroke-width="1.6" stroke-linecap="round"></path></svg>
+API 이름으로 검색
+</div>
+</div>
+<div style="padding:8px; display:flex; flex-direction:column; gap:2px">
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 10px; border-radius:8px; background:#eef2ff; opacity:1">
+<div style="display:flex; flex-direction:column; gap:2px; min-width:0">
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; font-weight:600; color:#0b1220">wafer_yield_summary</div>
+<div style="font-size:11px; color:#5a677d">웨이퍼 수율 집계</div>
+</div>
+<span style="font-size:11px; padding:2px 8px; border-radius:999px; background:#eef2ff; color:#4338ca; white-space:nowrap; font-family:'Geist Mono',ui-monospace,monospace">v3 · 선택됨</span>
+</div>
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 10px; border-radius:8px; background:transparent; opacity:1">
+<div style="display:flex; flex-direction:column; gap:2px; min-width:0">
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; font-weight:500; color:#0b1220">lot_process_history</div>
+<div style="font-size:11px; color:#5a677d">Lot 공정 이력</div>
+</div>
+<span style="font-size:11px; padding:2px 8px; border-radius:999px; background:#f4f6f8; color:#475569; white-space:nowrap; font-family:'Geist Mono',ui-monospace,monospace">v2 · 배포됨</span>
+</div>
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 10px; border-radius:8px; background:transparent; opacity:1">
+<div style="display:flex; flex-direction:column; gap:2px; min-width:0">
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; font-weight:500; color:#0b1220">equip_status_now</div>
+<div style="font-size:11px; color:#5a677d">설비 현재 상태</div>
+</div>
+<span style="font-size:11px; padding:2px 8px; border-radius:999px; background:#f4f6f8; color:#475569; white-space:nowrap; font-family:'Geist Mono',ui-monospace,monospace">v5 · 배포됨</span>
+</div>
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 10px; border-radius:8px; background:transparent; opacity:1">
+<div style="display:flex; flex-direction:column; gap:2px; min-width:0">
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; font-weight:500; color:#0b1220">defect_pareto</div>
+<div style="font-size:11px; color:#5a677d">불량 유형 파레토</div>
+</div>
+<span style="font-size:11px; padding:2px 8px; border-radius:999px; background:#f4f6f8; color:#475569; white-space:nowrap; font-family:'Geist Mono',ui-monospace,monospace">v1 · 배포됨</span>
+</div>
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 10px; border-radius:8px; background:transparent; opacity:1">
+<div style="display:flex; flex-direction:column; gap:2px; min-width:0">
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; font-weight:500; color:#0b1220">fab_wip_summary</div>
+<div style="font-size:11px; color:#5a677d">공정별 재공 현황</div>
+</div>
+<span style="font-size:11px; padding:2px 8px; border-radius:999px; background:#f4f6f8; color:#475569; white-space:nowrap; font-family:'Geist Mono',ui-monospace,monospace">v4 · 배포됨</span>
+</div>
+
+<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; padding:8px 10px; border-radius:8px; background:transparent; opacity:0.6">
+<div style="display:flex; flex-direction:column; gap:2px; min-width:0">
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; font-weight:500; color:#0b1220">recipe_param_diff</div>
+<div style="font-size:11px; color:#5a677d">레시피 파라미터 비교</div>
+</div>
+<span style="font-size:11px; padding:2px 8px; border-radius:999px; background:#fef3c7; color:#92400e; white-space:nowrap; font-family:'Geist Mono',ui-monospace,monospace">미배포</span>
+</div>
+
+</div>
+<div style="padding:8px 12px; border-top:1px solid #e6e8ec; background:#fafbfc; font-size:11px; color:#5a677d">배포된 API만 선택할 수 있어요 · 내 워크스페이스 6개</div>
+</div>
+</div>
+
+<div style="display:flex; flex-direction:column; gap:8px">
+<div style="display:flex; align-items:center; justify-content:space-between">
+<div style="font-size:12px; font-weight:600; color:#475569">API 정보</div>
+<span style="font-size:11px; padding:2px 8px; border-radius:999px; background:#f4f6f8; color:#475569; font-family:'Geist Mono',ui-monospace,monospace">Oracle 19c</span>
+</div>
+<div style="display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:12px">
+<span style="color:#5a677d">DB</span>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-weight:500">MESDB_F02</span>
+</div>
+<pre style="margin:0; padding:10px 12px; border:1px solid #e6e8ec; border-radius:10px; background:#f4f6f8; color:#1e293b; font-family:'Geist Mono',ui-monospace,monospace; font-size:11px; line-height:1.6; white-space:pre; overflow-x:auto">SELECT lot_id, wafer_id,
+       yield_rate, defect_cnt
+  FROM WAFER_YIELD
+ WHERE lot_id   = :lot_id
+   AND wafer_id = :wafer_id
+   AND factory_id = :factory_id</pre>
+</div>
+
+<div style="display:flex; flex-direction:column; gap:8px">
+<div style="font-size:12px; font-weight:600; color:#475569">파라미터 연결</div>
+
+<div style="border:1px solid #e6e8ec; border-radius:10px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px; background:#fafbfc">
+<div style="display:flex; flex-direction:column; gap:2px">
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; font-weight:500">lot_id</div>
+<div style="font-size:11px; color:#5a677d">string · 필수</div>
+</div>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; padding:4px 8px; border-radius:6px; background:#eef2ff; color:#4338ca">start.lot_id</span>
+</div>
+
+<div style="border:1px solid #e6e8ec; border-radius:10px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px; background:#fafbfc">
+<div style="display:flex; flex-direction:column; gap:2px">
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; font-weight:500">wafer_id</div>
+<div style="font-size:11px; color:#5a677d">string · 필수</div>
+</div>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; padding:4px 8px; border-radius:6px; background:#eef2ff; color:#4338ca">start.wafer_id</span>
+</div>
+
+<div style="border:1px solid #e6e8ec; border-radius:10px; padding:8px 10px; display:flex; align-items:center; justify-content:space-between; gap:8px; background:#fafbfc">
+<div style="display:flex; flex-direction:column; gap:2px">
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; font-weight:500">factory_id</div>
+<div style="font-size:11px; color:#5a677d">string · 선택</div>
+</div>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; padding:4px 8px; border-radius:6px; background:#e2e8f0; color:#1e293b">F02</span>
+</div>
+
+</div>
+
+<div style="display:flex; flex-direction:column; gap:8px">
+<div style="font-size:12px; font-weight:600; color:#475569">출력 컬럼</div>
+<div style="display:flex; flex-wrap:wrap; gap:6px">
+
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; padding:3px 8px; border-radius:6px; background:#f4f6f8; color:#334155; border:1px solid #e6e8ec">lot_id</span>
+
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; padding:3px 8px; border-radius:6px; background:#f4f6f8; color:#334155; border:1px solid #e6e8ec">wafer_id</span>
+
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; padding:3px 8px; border-radius:6px; background:#f4f6f8; color:#334155; border:1px solid #e6e8ec">yield_rate</span>
+
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; padding:3px 8px; border-radius:6px; background:#f4f6f8; color:#334155; border:1px solid #e6e8ec">defect_cnt</span>
+
+<span style="font-family:'Geist Mono',ui-monospace,monospace; font-size:12px; padding:3px 8px; border-radius:6px; background:#f4f6f8; color:#334155; border:1px solid #e6e8ec">process_step</span>
+
+</div>
+</div>
+
+<div style="display:flex; flex-direction:column; gap:8px">
+<div style="font-size:12px; font-weight:600; color:#475569">실행 옵션</div>
+<div style="display:flex; gap:8px; flex-wrap:wrap">
+<div style="flex:1 1 120px; border:1px solid #e6e8ec; border-radius:10px; padding:8px 10px; background:#fafbfc">
+<div style="font-size:11px; color:#5a677d">타임아웃</div>
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:13px; margin-top:2px">30s</div>
+</div>
+<div style="flex:1 1 120px; border:1px solid #e6e8ec; border-radius:10px; padding:8px 10px; background:#fafbfc">
+<div style="font-size:11px; color:#5a677d">DuckDB 적재 한도</div>
+<div style="font-family:'Geist Mono',ui-monospace,monospace; font-size:13px; margin-top:2px">100,000행</div>
+</div>
+</div>
+</div>
+
+</div>
+</aside>
+
+</main>
+
+<footer style="flex:none; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; padding:0 24px; height:48px; background:#ffffff; border-top:1px solid #e6e8ec">
+<div style="display:flex; align-items:center; gap:6px">
+
+<span style="padding:6px 12px; border-radius:8px; font-size:13px; font-weight:500; background:#eef2ff; color:#4338ca">결과</span>
+
+<span style="padding:6px 12px; border-radius:8px; font-size:13px; font-weight:500; background:transparent; color:#475569">입력값</span>
+
+<span style="padding:6px 12px; border-radius:8px; font-size:13px; font-weight:500; background:transparent; color:#475569">노드별 실행</span>
+
+</div>
+<div style="display:flex; align-items:center; gap:10px; font-size:12px">
+<span style="padding:3px 10px; border-radius:999px; background:#dcfce7; color:#166534; font-weight:500">성공</span>
+<span style="font-family:'Geist Mono',ui-monospace,monospace; color:#475569">5개 노드 · 1.42s · 4행</span>
+<span style="display:inline-flex; align-items:center; gap:6px; color:#4338ca; font-weight:500">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8l4-4 4 4" fill="none" stroke="#4338ca" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+결과 펼치기
+</span>
+</div>
+</footer>
+</div>
+</body></html>

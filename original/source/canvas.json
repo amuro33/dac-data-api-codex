@@ -1,0 +1,80 @@
+{
+  "v": 3,
+  "createdOnFiles": {
+    "v": 1,
+    "at": "2026-10-20T05:58:00Z"
+  },
+  "title": "MES API Platform 2027",
+  "launch": {
+    "view": "canvas"
+  },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {
+      "x": 0,
+      "y": 0,
+      "w": 1440,
+      "h": 960,
+      "title": "Data Workflow 에디터",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Deploy.dc.html": {
+      "x": 1520,
+      "y": 0,
+      "w": 1440,
+      "h": 960,
+      "title": "배포 (API · MCP)",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "Workflows.dc.html": {
+      "x": 3040,
+      "y": 0,
+      "w": 1440,
+      "h": 960,
+      "title": "Data Workflow 목록",
+      "expand": "fill"
+    },
+    "ToolPlayground.dc.html": {
+      "x": 0,
+      "y": 1440,
+      "w": 1440,
+      "h": 960,
+      "title": "Tool Playground",
+      "expand": "fill"
+    },
+    "Playground.dc.html": {
+      "x": 1520,
+      "y": 1440,
+      "w": 1440,
+      "h": 960,
+      "title": "Agent Playground",
+      "expand": "fill"
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Deploy.dc.html",
+    "Workflows.dc.html",
+    "ToolPlayground.dc.html",
+    "Playground.dc.html"
+  ],
+  "notes": {
+    "t1": {
+      "x": 0,
+      "y": -260,
+      "text": "1 · DATA API 기능 확장",
+      "kind": "title1",
+      "maxW": 4480
+    },
+    "t2": {
+      "x": 0,
+      "y": 1180,
+      "text": "2 · 에이전트, 도구 PlayGround",
+      "kind": "title1",
+      "maxW": 2960
+    }
+  },
+  "designSystems": []
+}
