@@ -162,7 +162,7 @@
     form.appendChild(sc);
     var btn = h("button", { class: "btn primary", onclick: call }, [
       busy ? h("span", { class: "spinner" }) : null,
-      busy ? "호출 중…" : "호출",
+      busy ? "실행 중…" : "실행",
     ]);
     if (busy) btn.disabled = true;
     form.appendChild(

@@ -82,7 +82,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright"),
     await page.screenshot({ path: "test-artifacts/deploy.png" });
     await page.locator(".c5p").click();
     await page.locator(".pg-form").waitFor();
-    await page.getByRole("button", { name: "호출", exact: true }).click();
+    await page.getByRole("button", { name: "실행", exact: true }).click();
     await page.waitForFunction(() =>
       document
         .querySelector(".resp .pre")
@@ -121,7 +121,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright"),
     await page.getByRole("button", { name: "목록 새로고침" }).click();
     await page.getByRole("button", { name: "baseline_tool 동기 호출" }).count();
     await page.locator(".item").filter({ hasText: "baseline_tool" }).click();
-    await page.getByRole("button", { name: "호출", exact: true }).click();
+    await page.getByRole("button", { name: "실행", exact: true }).click();
     await page.waitForFunction(() =>
       document
         .querySelector(".resp .pre")
