@@ -171,6 +171,12 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright"),
     await page.locator(".agent-input-form button[type=submit]").click();
     await page.locator(".toolcall").waitFor();
     a.match(await page.locator(".bub.bot").innerText(), /0.88/);
+    a.deepEqual(await page.locator(".agent-result-grid th").allTextContents(), [
+      "equip_id",
+      "avg_yield",
+      "wafer_cnt",
+    ]);
+    a.equal(await page.locator(".agent-result-grid tbody tr").count(), 1);
     await page.locator(".toolcall summary").click();
     a.equal(
       JSON.parse(await page.locator(".toolcall details pre").innerText())
@@ -198,6 +204,8 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright"),
     await page.reload();
     await page.locator(".toolcall").waitFor();
     a.equal(await page.locator(".bub.user").innerText(), "안녕하세요");
+    a.equal(await page.locator(".agent-result-grid tbody tr").count(), 3);
+    await page.screenshot({ path: "test-artifacts/agent-grid.png" });
     console.log(
       "PASS multiple deployed tools, Agent persisted selection, real call, reload and clear",
     );

@@ -373,8 +373,13 @@
           text: "메시지를 보내 이 에이전트와 대화해 보세요. 예) “LOT-1199 수율 알려줘”",
         }),
       );
-    a.msgs.forEach(function (m) {
-      box.appendChild(bubble(m));
+    a.msgs.forEach(function (m, i) {
+      const previous = a.msgs[i - 1];
+      box.appendChild(
+        m.r === "bot" && previous?.r === "call" && previous.result
+          ? resultGrid(previous.result)
+          : bubble(m),
+      );
     });
     if (a._request) {
       box.appendChild(bubble({ r: "user", t: a._request.question }));
@@ -408,6 +413,75 @@
     chatEl.appendChild(h("div", { class: "composer" }, [ta, btn]));
     box.scrollTop = box.scrollHeight;
   }
+  function resultGrid(result) {
+    const card = h("div", {
+      class: "bub bot agent-result",
+      style: "min-width:0;max-width:100%;width:100%;box-sizing:border-box",
+    });
+    card.appendChild(
+      h("div", {
+        style: "font-weight:600;margin-bottom:12px",
+        text: `${result.input.lot_id} · ${result.rows}개 그룹 조회 (운영 v${result.version})`,
+      }),
+    );
+    const wrap = h("div", {
+      style: "overflow-x:auto;border:1px solid #e2e8f0;border-radius:8px",
+    });
+    const table = h("table", {
+      class: "agent-result-grid",
+      "aria-label": "조회 결과",
+      style:
+        "width:100%;border-collapse:collapse;text-align:left;font-size:13px;white-space:nowrap",
+    });
+    table.appendChild(
+      h("thead", {}, [
+        h(
+          "tr",
+          {},
+          result.columns.map((c) =>
+            h("th", {
+              scope: "col",
+              style:
+                "padding:10px 12px;background:#f6f8fa;border-bottom:1px solid #e2e8f0;font-weight:600",
+              text: c,
+            }),
+          ),
+        ),
+      ]),
+    );
+    table.appendChild(
+      h(
+        "tbody",
+        {},
+        result.data.map((row) =>
+          h(
+            "tr",
+            {},
+            row.map((value) =>
+              h("td", {
+                style:
+                  "padding:10px 12px;border-bottom:1px solid #eef1f5;font-variant-numeric:tabular-nums;text-align:" +
+                  (typeof value === "number" ? "right" : "left"),
+                text: value == null ? "—" : String(value),
+              }),
+            ),
+          ),
+        ),
+      ),
+    );
+    wrap.appendChild(table);
+    card.appendChild(wrap);
+    if (!result.rows)
+      card.appendChild(
+        h("div", {
+          class: "hint",
+          style: "padding-top:12px",
+          text: "조회 조건에 맞는 결과가 없습니다.",
+        }),
+      );
+    return card;
+  }
+
   function bubble(m) {
     if (m.r === "call")
       return h("div", { class: "toolcall" }, [
