@@ -306,7 +306,7 @@
     );
     sc.appendChild(
       h("label", { class: "label" }, [
-        "실행할 도구",
+        "디버그: 도구 직접 실행",
         h(
           "select",
           { class: "select", id: "agent-tool" },
@@ -317,7 +317,7 @@
     ["start_time", "end_time"].forEach((key, i) =>
       sc.appendChild(
         h("label", { class: "label" }, [
-          key + " (KST)",
+          (i ? "조회 종료 시간" : "조회 시작 시간") + " (KST)",
           h("input", {
             class: "input",
             id: "agent-" + key,
