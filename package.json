@@ -2,6 +2,7 @@
   "name": "dac-data-api-mockup",
   "private": true,
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
   }
 }

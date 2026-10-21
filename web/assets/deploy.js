@@ -1,134 +1,186 @@
-// 배포 화면 동작 (목업용). 상태: API/MCP 대상 선택, 동기/Job, 미리보기 탭.
-class DCLogic {
-  constructor(props) { this.props = props || {}; this.state = {}; }
-  setState(s) { Object.assign(this.state, s); }
-}
-class Component extends DCLogic {
-constructor(props) {
-super(props);
-this.state = { api: true, mcp: true, tab: 'openapi', mode: 'sync' };
-}
-renderVals() {
-const api = this.state.api;
-const mcp = this.state.mcp;
-const tab = this.state.tab;
-const isAsync = this.state.mode === 'async';
-const openapi = [
-'openapi: 3.1.0',
-'info:',
-'  title: Lot 수율 · 공정 이력 분석',
-'  version: 1.0.0',
-'paths:',
-'  /api/workflow/lot_yield_equip:',
-'    post:',
-'      operationId: runLotYieldEquip',
-'      requestBody:',
-'        content:',
-'          application/json:',
-'            schema:',
-'              type: object',
-'              required: [lot_id, wafer_id, start_time, end_time]',
-'              properties:',
-'                lot_id: { type: string }',
-'                wafer_id: { type: string }',
-'                start_time: { type: string, format: date-time }',
-'                end_time: { type: string, format: date-time }',
-'      responses:',
-'        "200":',
-'          description: equip_id별 평균 수율'
-].join('\n');
-const openapiLines = openapi.split('\n');
-const respIdx = openapiLines.indexOf('      responses:');
-const openapiAsync = openapiLines.slice(0, respIdx).concat([
-'      responses:',
-'        "202":',
-'          description: Job 접수 (job_id 반환)',
-'  /api/workflow/jobs/{job_id}:',
-'    get:',
-'      operationId: getJobResult',
-'      responses:',
-'        "200":',
-'          description: 상태와 결과'
-]).join('\n');
-const mcpSchema = [
-'{',
-'  "name": "get_lot_yield_by_equipment",',
-'  "description": "Lot·웨이퍼의 기간별 수율을 장비별로 집계",',
-'  "inputSchema": {',
-'    "type": "object",',
-'    "required": ["lot_id", "wafer_id", "start_time", "end_time"],',
-'    "properties": {',
-'      "lot_id": { "type": "string" },',
-'      "wafer_id": { "type": "string" },',
-'      "start_time": { "type": "string", "format": "date-time" },',
-'      "end_time": { "type": "string", "format": "date-time" }',
-'    }',
-'  }',
-'}'
-].join('\n');
-const noTarget = !api && !mcp;
-let label = 'API + MCP 배포하기';
-if (api && !mcp) label = 'API로 배포하기';
-if (!api && mcp) label = 'MCP로 배포하기';
-if (noTarget) label = '배포 대상을 선택하세요';
-return {
-isAsync: isAsync,
-setSync: () => this.setState({ mode: 'sync' }),
-setAsync: () => this.setState({ mode: 'async' }),
-syncBorder: isAsync ? '#d6dae1' : '#4f46e5',
-syncBg: isAsync ? '#ffffff' : '#f5f6ff',
-asyncBorder: isAsync ? '#4f46e5' : '#d6dae1',
-asyncBg: isAsync ? '#f5f6ff' : '#ffffff',
-apiOn: api,
-mcpOn: mcp,
-toggleApi: () => this.setState({ api: !this.state.api }),
-toggleMcp: () => this.setState({ mcp: !this.state.mcp }),
-apiBorder: api ? '#4f46e5' : '#d6dae1',
-apiBg: api ? '#f5f6ff' : '#ffffff',
-apiCheck: api ? '#4f46e5' : '#ffffff',
-apiMark: api ? 1 : 0,
-mcpBorder: mcp ? '#4f46e5' : '#d6dae1',
-mcpBg: mcp ? '#f5f6ff' : '#ffffff',
-mcpCheck: mcp ? '#4f46e5' : '#ffffff',
-mcpMark: mcp ? 1 : 0,
-apiFields: [
-{ label: 'api_id', value: 'lot_yield_equip' },
-{ label: '호출 경로', value: '/api/workflow/lot_yield_equip' },
-{ label: '메서드', value: 'POST' },
-{ label: '워크스페이스', value: 'MFG Analytics' }
-],
-mcpFields: [
-{ label: 'MCP 서버', value: 'mes-analytics' },
-{ label: '툴 이름', value: 'get_lot_yield_by_equipment' }
-],
-vars: [
-{ name: 'lot_id', type: 'string', node: '수율 요약 조회', sample: 'L24A0815' },
-{ name: 'wafer_id', type: 'string', node: '수율 요약 조회', sample: 'W07' },
-{ name: 'start_time', type: 'datetime', node: '공정 이력 조회', sample: '2026-10-01T00:00:00Z' },
-{ name: 'end_time', type: 'datetime', node: '공정 이력 조회', sample: '2026-10-20T00:00:00Z' }
-],
-showOpenapi: () => this.setState({ tab: 'openapi' }),
-showMcp: () => this.setState({ tab: 'mcp' }),
-tabIsOpenapi: tab === 'openapi',
-tabIsMcp: tab === 'mcp',
-tabOpenapiBg: tab === 'openapi' ? '#eef2ff' : 'transparent',
-tabOpenapiFg: tab === 'openapi' ? '#4338ca' : '#475569',
-tabMcpBg: tab === 'mcp' ? '#eef2ff' : 'transparent',
-tabMcpFg: tab === 'mcp' ? '#4338ca' : '#475569',
-preview: tab === 'openapi' ? (isAsync ? openapiAsync : openapi) : (isAsync ? mcpSchema.replace('장비별로 집계",','장비별로 집계 (Job 접수 후 job_id 반환)",') : mcpSchema),
-checks: [
-'테스트 실행 성공 (1.42s · 4행)',
-'필수 변수 4개 정의 완료',
-'사용한 Data API 2개 모두 배포 상태'
-],
-deployBg: noTarget ? '#64748b' : '#4f46e5',
-deployLabel: label
-};
-}
-}
-
-const inst = new Component({});
-window.PAGE = {
-  values: () => inst.renderVals(),
-  actions: new Proxy({}, { get: (_, name) => () => inst.renderVals()[name]() })
-};
+(async function () {
+  await Store.ready;
+  const $ = (s) => document.querySelector(s),
+    id = new URLSearchParams(location.search).get("id") || "lot_yield_equip";
+  let w = await Store.request("/api/workflows/" + encodeURIComponent(id)),
+    tab = "openapi",
+    api = true,
+    valid = w.validatedRevision === w.revision;
+  document.querySelector(".c1y").textContent = w.id;
+  document.querySelector(".c1z").textContent = "revision " + w.revision;
+  const latest = w.versions.at(-1);
+  if (latest) api = latest.api;
+  const input = (value, id) => {
+    const x = document.createElement("input");
+    x.className = "live-input";
+    x.value = value;
+    x.id = id;
+    return x;
+  };
+  const name = input(
+      latest?.toolName ||
+        (id === "lot_yield_equip" ? "get_lot_yield_by_equipment" : "get_" + id),
+      "deploy-tool-name",
+    ),
+    desc = input(latest?.description || w.desc, "deploy-description");
+  function value(label, text) {
+    document.querySelectorAll(".c52").forEach((row) => {
+      if (row.querySelector(".c53")?.textContent === label) {
+        const cell = row.querySelector(".c54");
+        cell.replaceChildren(
+          typeof text === "string" ? document.createTextNode(text) : text,
+        );
+      }
+    });
+  }
+  value("호출 경로", "POST /api/workflow/" + id);
+  value("api_id", id);
+  value("인증", "로컬 전용 · 사내 인증 연동 전");
+  value("Swagger UI 공개", "OpenAPI JSON 제공 · Swagger UI 미연결");
+  value("타임아웃", "동기 fixture 실행 · 강제 취소 미구현");
+  value("호출 제한", "미적용 · 운영 연동 전");
+  value("툴 이름", name);
+  value("툴 설명", desc);
+  value("MCP 서버", "내부 도구 카탈로그");
+  value("접근 권한", "로컬 Playground · 외부 MCP 연결 전");
+  $(".c4p").href = "editor.html?id=" + encodeURIComponent(id);
+  $(".c5p").href = "tool-playground.html";
+  $(".c5p").textContent = "Tool Playground에서 배포 결과 확인";
+  const mcp = $('[data-action="toggleMcp"]');
+  mcp.disabled = true;
+  mcp.querySelector(".c4x").textContent = "Playground 도구 등록";
+  mcp.querySelector(".c5a").textContent = "내부 실행";
+  mcp.querySelector(".c4z").textContent =
+    "배포한 버전을 Tool과 Agent에서 실행합니다. 외부 MCP 전송은 다음 단계입니다.";
+  const job = $('[data-action="setAsync"]');
+  job.disabled = true;
+  job.title = "Job 실행은 다음 단계입니다.";
+  job.append(document.createTextNode(" · 준비 중"));
+  const checks = [...document.querySelectorAll(".c5m .c2l")];
+  const deploy = $(".c5o button");
+  deploy.id = "publish";
+  const validate = document.createElement("button");
+  validate.className = "c20";
+  validate.id = "validate";
+  validate.textContent = "저장된 초안 테스트";
+  $(".c5o").prepend(validate);
+  const status = document.createElement("div");
+  status.className = "runtime-status";
+  status.id = "deploy-status";
+  $(".c5o").append(status);
+  function render() {
+    const v = {
+      isAsync: false,
+      apiOn: api,
+      mcpOn: true,
+      apiBorder: api ? "#4f46e5" : "#d6dae1",
+      apiBg: api ? "#f5f6ff" : "#fff",
+      apiCheck: api ? "#4f46e5" : "#fff",
+      apiMark: api ? 1 : 0,
+      mcpBorder: "#4f46e5",
+      mcpBg: "#f5f6ff",
+      mcpCheck: "#4f46e5",
+      mcpMark: 1,
+      syncBorder: "#4f46e5",
+      syncBg: "#f5f6ff",
+      asyncBorder: "#d6dae1",
+      asyncBg: "#fff",
+      tabOpenapiBg: tab === "openapi" ? "#eef2ff" : "transparent",
+      tabOpenapiFg: tab === "openapi" ? "#4338ca" : "#475569",
+      tabMcpBg: tab === "mcp" ? "#eef2ff" : "transparent",
+      tabMcpFg: tab === "mcp" ? "#4338ca" : "#475569",
+      deployBg: valid ? "#4f46e5" : "#64748b",
+      deployLabel: api ? "API + 내부 도구 배포하기" : "내부 도구 배포하기",
+      preview: JSON.stringify(
+        tab === "openapi"
+          ? openapi
+          : { name: name.value, description: desc.value, inputSchema: schema },
+        null,
+        2,
+      ),
+    };
+    document
+      .querySelectorAll("[data-if]")
+      .forEach((x) => (x.hidden = !v[x.dataset.if]));
+    document.querySelectorAll("[data-style-tpl]").forEach((x) =>
+      x.setAttribute(
+        "style",
+        x.dataset.styleTpl.replace(/\{\{(\w+)\}\}/g, (_, k) => v[k]),
+      ),
+    );
+    document
+      .querySelectorAll("[data-text]")
+      .forEach((x) => (x.textContent = v[x.dataset.text]));
+    checks[0].textContent = valid
+      ? "저장된 초안 테스트 통과 · revision " + w.revision
+      : "저장된 초안 테스트 필요";
+    checks[1].textContent = "START 입력 스키마 · 필수 3개 / 선택 1개";
+    checks[2].textContent = "합성 수율·공정 이력 API 연결";
+    document.querySelector(".c5n").style.background = valid
+      ? "#10b981"
+      : "#94a3b8";
+    deploy.disabled = !valid;
+  }
+  const schema = MOCK.inputSchema;
+  let openapi = await Store.request("/api/workflows/" + id + "/openapi");
+  name.oninput = desc.oninput = render;
+  document.querySelectorAll("[data-action]").forEach(
+    (b) =>
+      (b.onclick = () => {
+        if (b.dataset.action === "toggleApi") api = !api;
+        if (b.dataset.action === "showOpenapi") tab = "openapi";
+        if (b.dataset.action === "showMcp") tab = "mcp";
+        render();
+      }),
+  );
+  validate.onclick = async () => {
+    validate.disabled = true;
+    try {
+      const r = await Store.request("/api/workflows/" + id + "/test", "POST", {
+        revision: w.revision,
+        input: {
+          lot_id: "LOT-1199",
+          wafer_id: "ALL",
+          start_time: "2026-10-19T14:00",
+          end_time: "2026-10-20T14:00",
+        },
+      });
+      valid = true;
+      status.textContent =
+        "테스트 성공 · " + r.rows + "행 · " + r.elapsed_ms + "ms";
+      render();
+    } catch (e) {
+      valid = false;
+      status.textContent = e.message;
+      render();
+    } finally {
+      validate.disabled = false;
+    }
+  };
+  deploy.onclick = async () => {
+    deploy.disabled = true;
+    try {
+      const v = await Store.request(
+        "/api/workflows/" + id + "/publish",
+        "POST",
+        {
+          revision: w.revision,
+          toolName: name.value.trim(),
+          description: desc.value,
+          api,
+          mode: "sync",
+        },
+      );
+      status.textContent = "v" + v.version + " 배포 완료 · " + v.toolName;
+      openapi = await Store.request("/api/workflows/" + id + "/openapi");
+      render();
+      $(".c5p").href =
+        "tool-playground.html?tool=" + encodeURIComponent(v.toolName);
+    } catch (e) {
+      status.textContent = e.message;
+    } finally {
+      deploy.disabled = !valid;
+    }
+  };
+  render();
+})().catch((e) => alert(e.message));

@@ -1,0 +1,34 @@
+.pg-main{gap:16px}
+.pg-list{width:268px;flex:none;overflow:hidden}
+.pg-list .top{padding:12px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.pg-list .lbody{flex:1;overflow:auto;padding:8px}
+.grp{padding:10px 8px 4px;font-size:11px;font-weight:600;color:var(--muted);display:flex;justify-content:space-between;align-items:center}
+.item{display:block;width:100%;text-align:left;border:1px solid transparent;background:transparent;border-radius:10px;padding:8px 10px;margin-bottom:2px}
+.item:hover{background:var(--soft2)}
+.item.on{background:var(--accent-soft);border-color:#c7d2fe}
+.item.dis{opacity:.5;cursor:default}
+.item .t{font:500 12.5px var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.item .s{font-size:11.5px;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pg-center{flex:1;min-width:0;display:flex;flex-direction:column;gap:16px}
+.pg-form{flex:none;max-height:58%;display:flex;flex-direction:column}
+.pg-form .scroll{padding:16px}
+.field{margin-bottom:12px}
+.field .label{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+.field .label em{font-style:normal;font:11px var(--mono);color:var(--muted);font-weight:400}
+.field .label b{color:#dc2626}
+.field .msg{font-size:11px;color:#dc2626;margin-top:4px}
+.foot{flex:none;padding:12px 16px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.resp{flex:1;min-height:0;display:flex;flex-direction:column}
+.resp .bar{flex:none;padding:10px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.resp .out{flex:1;min-height:0;overflow:auto;padding:12px}
+.resp .out .pre{min-height:100%}
+.hist{width:260px;flex:none;overflow:hidden}
+.hist .row{display:block;width:100%;text-align:left;border:0;background:transparent;padding:10px 14px;border-bottom:1px solid #eef0f3}
+.hist .row:hover{background:var(--soft2)}
+.hist .row.on{background:#f5f6ff}
+.hist .row .n{font:500 12px var(--mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hist .row .m{display:flex;gap:6px;align-items:center;margin-top:4px;font-size:11px;color:var(--muted)}
+.jobbox{margin:12px;padding:12px 14px;border:1px solid #fde68a;background:#fffbeb;border-radius:12px;font-size:13px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.jobbox code{font:12px var(--mono)}
+.desc{font-size:12.5px;color:var(--text2);line-height:1.55;margin:0 0 14px}
+.json-k{color:#93c5fd}.json-s{color:#86efac}.json-n{color:#fcd34d}
