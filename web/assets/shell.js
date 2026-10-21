@@ -10,7 +10,7 @@ window.Shell = (function () {
     cog: '<circle cx="9" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M9 2.5v2M9 13.5v2M2.5 9h2M13.5 9h2M4.4 4.4l1.4 1.4M12.2 12.2l1.4 1.4M4.4 13.6l1.4-1.4M12.2 5.8l1.4-1.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>'
   };
   var NAV = [
-    ['home', '홈', '#'], ['data', 'Data API', '#'], ['ctrl', '제어 API', '#'],
+    ['home', '홈', 'index.html'], ['data', 'Data API', '#'], ['ctrl', '제어 API', '#'],
     ['wf', 'Data Workflow', 'workflows.html'], ['tool', 'Tool Playground', 'tool-playground.html'], ['bot', 'Agent Playground', 'agent-playground.html']
   ];
   function svg(k) { return '<svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">' + ICONS[k] + '</svg>'; }
