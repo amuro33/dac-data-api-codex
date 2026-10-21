@@ -10,11 +10,11 @@ MES API Platform 2027 — Data Workflow · Playground.
 빌드 없이 정적 파일(`web/`)만 서빙하면 됩니다.
 
 ```
-node server.js            # http://localhost:3000  (Node.js만 있으면 됨, 설치할 패키지 없음)
+node server.js            # http://localhost:4177  (Node.js만 있으면 됨, 설치할 패키지 없음)
 # 또는
 npm start                 # 위와 같음
 # 또는
-python -m http.server 3000 --directory web
+python -m http.server 4177 --directory web
 ```
 
 사내망처럼 패키지를 받을 수 없는 환경에서도 `node server.js`는 그대로 동작합니다.
