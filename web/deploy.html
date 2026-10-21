@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><title>배포 (API · MCP)</title>
+
+
+
+
+
+
+
+
+<meta name="viewport" content="width=1440">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=IBM+Plex+Sans+KR:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css"></head><body>
+
+<div class="c0">
+
+<header class="c1v">
+<div class="c5">
+<div class="c3">A</div>
+<div class="ch">
+<div class="c4">MES API Platform</div>
+<div class="c1w">MFG Analytics · 배포</div>
+</div>
+</div>
+<div class="c1x">
+<div class="c1y">Lot 수율 · 공정 이력 분석</div>
+<span class="c1z">v1 · 신규 배포</span>
+</div>
+<a href="editor.html" class="c4p">에디터로 돌아가기</a>
+</header>
+
+<main class="c4q">
+
+<section class="c4r">
+
+<div class="c3m">
+<div class="c4s">배포 대상 · 둘 다 선택할 수 있어요</div>
+<div class="c4t">
+<div data-style-tpl="border:2px solid {{apiBorder}}; background:{{apiBg}}; border-radius:14px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)" style="border:2px solid #4f46e5; background:#f5f6ff; border-radius:14px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)">
+<button data-action="toggleApi" aria-pressed="true" class="c4u">
+<span data-style-tpl="width:22px; height:22px; box-sizing:border-box; border-radius:6px; border:2px solid {{apiBorder}}; background:{{apiCheck}}; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px" style="width:22px; height:22px; box-sizing:border-box; border-radius:6px; border:2px solid #4f46e5; background:#4f46e5; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" data-style-tpl="opacity:{{apiMark}}" style="opacity:1"><path d="M2 6.5l2.5 2.5L10 3" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span class="c4v">
+<span class="c4w">
+<span class="c4x">API로 배포</span>
+<span class="c4y">REST · OpenAPI 3.1</span>
+</span>
+<span class="c4z">경로가 생기고 Swagger 명세가 자동으로 만들어집니다. 사내 시스템이 HTTP로 호출합니다.</span>
+</span>
+</button>
+
+<div data-if="apiOn" class="c50">
+<div class="c51">
+<div class="c52">
+<div class="c53">호출 경로</div>
+<div class="c54"><span class="c55">POST</span> <span class="c56">/api/workflow/lot_yield_equip</span></div>
+</div>
+<div class="c52">
+<div class="c53">api_id</div>
+<div class="c54"><span class="c56">lot_yield_equip</span> <span class="c57">사용 가능</span></div>
+</div>
+<div class="c52">
+<div class="c53">워크스페이스</div>
+<div class="c54">MFG Analytics</div>
+</div>
+<div class="c52">
+<div class="c53">인증</div>
+<div class="c54">사내 토큰 (Bearer)</div>
+</div>
+<div class="c52">
+<div class="c53">Swagger UI 공개</div>
+<div class="c54"><span class="c57">켜짐 · 사내망</span></div>
+</div>
+<div class="c52">
+<div class="c53">타임아웃</div>
+<div class="c54"><span class="c56">30s</span> <span class="c2y">노드 실행 전체 기준</span></div>
+</div>
+<div class="c52">
+<div class="c53">호출 제한</div>
+<div class="c54"><span class="c56">60회 / 분</span></div>
+</div>
+<div data-if="isAsync" hidden="" class="c50">
+<div class="c52">
+<div class="c53">응답</div>
+<div class="c54"><span class="c56">202 Accepted</span> <span class="c2y">job_id 반환</span></div>
+</div>
+<div class="c52">
+<div class="c53">결과 조회</div>
+<div class="c54"><span class="c58">GET</span> <span class="c56">/api/workflow/jobs/{job_id}</span></div>
+</div>
+<div class="c52">
+<div class="c53">완료 웹훅</div>
+<div class="c54"><span class="c56">https://hooks.mes.internal/wf/lot_yield_equip</span><div class="c59">완료·실패 시 POST로 알려요. 비워 두면 조회로만 확인해요</div></div>
+</div>
+<div class="c52">
+<div class="c53">재시도 · 보관</div>
+<div class="c54">실패 시 3회 재시도 · 결과 7일 보관</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div data-style-tpl="border:2px solid {{mcpBorder}}; background:{{mcpBg}}; border-radius:14px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)" style="border:2px solid #4f46e5; background:#f5f6ff; border-radius:14px; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)">
+<button data-action="toggleMcp" aria-pressed="true" class="c4u">
+<span data-style-tpl="width:22px; height:22px; box-sizing:border-box; border-radius:6px; border:2px solid {{mcpBorder}}; background:{{mcpCheck}}; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px" style="width:22px; height:22px; box-sizing:border-box; border-radius:6px; border:2px solid #4f46e5; background:#4f46e5; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true" data-style-tpl="opacity:{{mcpMark}}" style="opacity:1"><path d="M2 6.5l2.5 2.5L10 3" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span class="c4v">
+<span class="c4w">
+<span class="c4x">MCP로 배포</span>
+<span class="c5a">streamable-http</span>
+</span>
+<span class="c4z">워크플로우가 MCP 툴 하나로 노출됩니다. Agent와 Playground가 바로 호출할 수 있어요.</span>
+</span>
+</button>
+
+<div data-if="mcpOn" class="c50">
+<div class="c5b">
+<div class="c52">
+<div class="c53">MCP 서버</div>
+<div class="c54"><span class="c56">mes-analytics</span> <span class="c5c">기존 호스트</span></div>
+</div>
+<div class="c52">
+<div class="c53">툴 이름</div>
+<div class="c54"><span class="c56">get_lot_yield_by_equipment</span></div>
+</div>
+<div class="c52">
+<div class="c53">툴 설명</div>
+<div class="c54"><span class="c5d">Lot·웨이퍼의 기간별 수율을 장비(equip_id)별로 집계해 반환합니다. 수율 0.95 미만 Lot만 포함합니다.</span></div>
+</div>
+<div class="c52">
+<div class="c53">접근 권한</div>
+<div class="c54">MFG Analytics 워크스페이스 멤버 · Agent</div>
+</div>
+<div data-if="isAsync" hidden="" class="c50">
+<div class="c52">
+<div class="c53">툴 구성</div>
+<div class="c54"><span class="c56">get_lot_yield_by_equipment</span> <span class="c2y">→ job_id 반환</span><br><span class="c56">get_job_result</span> <span class="c2y">→ 상태·결과 조회</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="c3m">
+<div class="c4s">실행 방식 · 여러 Data API를 엮어 오래 걸리면 Job으로 돌려요</div>
+<div class="c5e">
+<button data-action="setSync" data-style-tpl="flex:1 1 0; min-width:0; text-align:left; border:2px solid {{syncBorder}}; background:{{syncBg}}; border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; font:inherit; color:#0b1220; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)" style="flex:1 1 0; min-width:0; text-align:left; border:2px solid #4f46e5; background:#f5f6ff; border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; font:inherit; color:#0b1220; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)">
+<span class="c4w"><span class="c4x">바로 실행</span><span class="c5f">동기</span></span>
+<span class="c4z">호출하면 끝날 때까지 기다렸다가 결과를 바로 돌려줍니다. 몇 초 안에 끝나는 워크플로우에 알맞아요.</span>
+</button>
+<button data-action="setAsync" data-style-tpl="flex:1 1 0; min-width:0; text-align:left; border:2px solid {{asyncBorder}}; background:{{asyncBg}}; border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; font:inherit; color:#0b1220; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)" style="flex:1 1 0; min-width:0; text-align:left; border:2px solid #d6dae1; background:#ffffff; border-radius:14px; padding:14px 16px; display:flex; flex-direction:column; gap:6px; font:inherit; color:#0b1220; box-shadow:0 1px 2px rgba(15,23,42,0.04), 0 8px 24px rgba(15,23,42,0.04)">
+<span class="c4w"><span class="c4x">Job으로 실행</span><span class="c5f">비동기</span></span>
+<span class="c4z">job_id를 바로 돌려주고 뒤에서 실행합니다. 끝나면 웹훅으로 알리거나 job_id로 결과를 조회해요.</span>
+</button>
+</div>
+</div>
+
+</section>
+
+<aside class="c5g">
+
+<div class="c5h">
+<div class="c5i">
+<button data-action="showOpenapi" aria-pressed="true" data-style-tpl="height:36px; padding:0 12px; border-radius:8px; border:0; background:{{tabOpenapiBg}}; color:{{tabOpenapiFg}}; font:inherit; font-size:13px; font-weight:500" style="height:36px; padding:0 12px; border-radius:8px; border:0; background:#eef2ff; color:#4338ca; font:inherit; font-size:13px; font-weight:500">OpenAPI 3.1</button>
+<button data-action="showMcp" aria-pressed="false" data-style-tpl="height:36px; padding:0 12px; border-radius:8px; border:0; background:{{tabMcpBg}}; color:{{tabMcpFg}}; font:inherit; font-size:13px; font-weight:500" style="height:36px; padding:0 12px; border-radius:8px; border:0; background:transparent; color:#475569; font:inherit; font-size:13px; font-weight:500">MCP 툴 스키마</button>
+<span class="c5j">자동 생성 미리보기</span>
+</div>
+<pre class="c5k"><span data-text="preview">openapi: 3.1.0
+info:
+  title: Lot 수율 · 공정 이력 분석
+  version: 1.0.0
+paths:
+  /api/workflow/lot_yield_equip:
+    post:
+      operationId: runLotYieldEquip
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [lot_id, wafer_id, start_time, end_time]
+              properties:
+                lot_id: { type: string }
+                wafer_id: { type: string }
+                start_time: { type: string, format: date-time }
+                end_time: { type: string, format: date-time }
+      responses:
+        "200":
+          description: equip_id별 평균 수율</span></pre>
+</div>
+
+<div class="c5l">
+<div class="c3k">배포 전 확인</div>
+
+<div class="c5m">
+<span class="c5n">
+<svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span class="c2l">테스트 실행 성공 (1.42s · 4행)</span>
+</div>
+
+<div class="c5m">
+<span class="c5n">
+<svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span class="c2l">필수 변수 4개 정의 완료</span>
+</div>
+
+<div class="c5m">
+<span class="c5n">
+<svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 6.5l2.5 2.5L10 3" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</span>
+<span class="c2l">사용한 Data API 2개 모두 배포 상태</span>
+</div>
+
+</div>
+
+<div class="c5o">
+<button data-style-tpl="height:48px; width:100%; border-radius:12px; border:0; background:{{deployBg}}; color:#ffffff; font:inherit; font-weight:600; font-size:15px" style="height:48px; width:100%; border-radius:12px; border:0; background:#4f46e5; color:#ffffff; font:inherit; font-weight:600; font-size:15px"><span data-text="deployLabel">API + MCP 배포하기</span></button>
+<a href="agent-playground.html" class="c5p">배포 후 Playground에서 확인</a>
+</div>
+
+</aside>
+
+</main>
+</div>
+
+<script src="assets/deploy.js"></script>
+<script src="assets/app.js"></script></body></html>

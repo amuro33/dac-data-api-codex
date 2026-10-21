@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><title>Data Workflow 에디터</title>
+
+
+
+
+
+
+
+
+<meta name="viewport" content="width=1440">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500&amp;family=IBM+Plex+Sans+KR:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css"></head><body>
+
+<div class="c0">
+
+<header class="c1v">
+<div class="c5">
+<div class="c3">A</div>
+<div class="ch">
+<div class="c4">MES API Platform</div>
+<div class="c1w">MFG Analytics · Data Workflow</div>
+</div>
+</div>
+<div class="c1x">
+<div class="c1y">Lot 수율 · 공정 이력 분석</div>
+<span class="c1z">초안</span>
+<span class="cj">14:52 자동 저장</span>
+</div>
+<div class="c1x">
+<button class="c20">
+<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><polygon points="3,2 12,7 3,12" fill="#4f46e5"></polygon></svg>
+테스트 실행
+</button>
+<button class="c21">저장</button>
+<a href="deploy.html" class="ck">
+<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 12V3M3 6.5l4-4 4 4" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+배포
+</a>
+</div>
+</header>
+
+<main class="c22">
+
+<section class="c23">
+
+
+<div class="c24">
+<div class="c25">빈 곳을 우클릭하면 노드를 추가할 수 있어요</div>
+<div class="c26">
+
+
+<svg width="40" height="100" viewBox="0 0 40 100" aria-hidden="true" class="c27"><path d="M0,100 C20,100 20,0 40,0" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg width="40" height="100" viewBox="0 0 40 100" aria-hidden="true" class="c28"><path d="M0,0 C20,0 20,100 40,100" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg width="40" height="80" viewBox="0 0 40 80" aria-hidden="true" class="c29"><path d="M0,0 C20,0 20,80 40,80" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg width="40" height="80" viewBox="0 0 40 80" aria-hidden="true" class="c2a"><path d="M0,80 C20,80 20,0 40,0" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg width="30" height="2" viewBox="0 0 30 2" aria-hidden="true" class="c2b"><path d="M0,1 L30,1" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg width="30" height="2" viewBox="0 0 30 2" aria-hidden="true" class="c2c"><path d="M0,1 L30,1" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+<svg width="30" height="2" viewBox="0 0 30 2" aria-hidden="true" class="c2d"><path d="M0,1 L30,1" fill="none" stroke="#818cf8" stroke-width="2"></path></svg>
+
+
+<div class="c2e">
+<div class="c2f">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><polygon points="3,2 10,6 3,10" fill="#4338ca"></polygon></svg>
+<span class="c2g">START</span>
+<span class="c2h"><span class="c2i"></span></span>
+</div>
+<div class="c2j">
+
+<div class="c2k">
+<span class="c2l">lot_id</span>
+<span class="c2m">string</span>
+</div>
+
+<div class="c2k">
+<span class="c2l">wafer_id</span>
+<span class="c2m">string</span>
+</div>
+
+<div class="c2k">
+<span class="c2l">start_time</span>
+<span class="c2m">datetime</span>
+</div>
+
+<div class="c2k">
+<span class="c2l">end_time</span>
+<span class="c2m">datetime</span>
+</div>
+
+</div>
+</div>
+
+<div class="c2n">
+<div class="c2o">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><ellipse cx="6" cy="3" rx="4" ry="1.6" fill="none" stroke="#0369a1" stroke-width="1.3"></ellipse><path d="M2 3v6c0 .9 1.8 1.6 4 1.6S10 9.9 10 9V3M2 6c0 .9 1.8 1.6 4 1.6S10 6.9 10 6" fill="none" stroke="#0369a1" stroke-width="1.3"></path></svg>
+<span class="c2p">DAC</span>
+<span class="c2h"><span class="c2i"></span><span class="c2q">0.8s</span></span>
+</div>
+<div class="c2j">
+<div class="c2r">수율 요약 조회</div><div class="c2s">wafer_yield_summary</div><div class="c2t">lot_id, wafer_id<br>← START<br>factory_id = F02</div>
+</div>
+</div>
+
+<div class="c2u">
+<div class="c2o">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><ellipse cx="6" cy="3" rx="4" ry="1.6" fill="none" stroke="#0369a1" stroke-width="1.3"></ellipse><path d="M2 3v6c0 .9 1.8 1.6 4 1.6S10 9.9 10 9V3M2 6c0 .9 1.8 1.6 4 1.6S10 6.9 10 6" fill="none" stroke="#0369a1" stroke-width="1.3"></path></svg>
+<span class="c2p">DAC</span>
+<span class="c2h"><span class="c2i"></span><span class="c2q">0.6s</span></span>
+</div>
+<div class="c2j">
+<div class="c2r">공정 이력 조회</div><div class="c2s">lot_process_history</div><div class="c2t">start_time, end_time<br>← START</div>
+</div>
+</div>
+
+<div class="c2v">
+<div class="c2w">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><circle cx="4.5" cy="6" r="3" fill="none" stroke="#92400e" stroke-width="1.3"></circle><circle cx="7.5" cy="6" r="3" fill="none" stroke="#92400e" stroke-width="1.3"></circle></svg>
+<span class="c2x">JOIN</span>
+<span class="c2h"><span class="c2i"></span><span class="c2q">0.1s</span></span>
+</div>
+<div class="c2j">
+<div class="c2y">DuckDB · INNER</div><div class="c2t">ON lot_id<br>= lot_id</div>
+</div>
+</div>
+
+<div class="c2z">
+<div class="c2w">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1.5 2h9L7 6.2V10L5 9V6.2z" fill="none" stroke="#92400e" stroke-width="1.3" stroke-linejoin="round"></path></svg>
+<span class="c2x">Filter</span>
+<span class="c2h"><span class="c2i"></span></span>
+</div>
+<div class="c2j">
+<div class="c2y">DuckDB</div><div class="c2t">yield &lt; 0.95</div>
+</div>
+</div>
+
+<div class="c30">
+<div class="c2w">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="1.5" y="2" width="9" height="2" rx="1" fill="#92400e"></rect><rect x="1.5" y="5" width="6" height="2" rx="1" fill="#92400e"></rect><rect x="1.5" y="8" width="3.5" height="2" rx="1" fill="#92400e"></rect></svg>
+<span class="c2x">Group By</span>
+<span class="c2h"><span class="c2i"></span></span>
+</div>
+<div class="c2j">
+<div class="c2y">DuckDB</div><div class="c2t">BY equip_id</div>
+</div>
+</div>
+
+<div class="c31">
+<div class="c32">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><rect x="2.5" y="2.5" width="7" height="7" rx="1.5" fill="#334155"></rect></svg>
+<span class="c33">END</span>
+<span class="c2h"><span class="c2i"></span></span>
+</div>
+<div class="c2j">
+<div class="c2y">출력 4열</div>
+</div>
+</div>
+
+
+<div class="c34"></div>
+
+<div class="c35"></div>
+
+<div class="c36"></div>
+
+<div class="c37"></div>
+
+<div class="c38"></div>
+
+<div class="c39"></div>
+
+<div class="c3a"></div>
+
+<div class="c3b"></div>
+
+<div class="c3c"></div>
+
+<div class="c3d"></div>
+
+<div class="c3e"></div>
+
+<div class="c3f"></div>
+
+<div class="c3g"></div>
+
+
+</div>
+</div>
+
+</section>
+
+<aside class="c3h">
+
+<div class="c3i">
+<div class="c3j">DAC</div>
+<div class="ch">
+<div class="c3k">수율 요약 조회</div>
+<div class="cj">Data API 노드</div>
+</div>
+</div>
+
+<div class="c3l">
+
+<div class="c3m">
+<div class="c3n">
+<div class="c3o">API 선택</div>
+<span class="c3p">MFG Analytics</span>
+</div>
+<div class="c3q">
+<div class="c3r">
+<div class="c3s">wafer_yield_summary</div>
+<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M3 9l4-4 4 4" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</div>
+<div class="c3t">
+<div class="c3u">
+<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="6" cy="6" r="4" fill="none" stroke="#5a677d" stroke-width="1.6"></circle><path d="M9.2 9.2L12 12" stroke="#5a677d" stroke-width="1.6" stroke-linecap="round"></path></svg>
+API 이름으로 검색
+</div>
+</div>
+<div class="c3v">
+
+<div class="c3w">
+<div class="c3x">
+<div class="c3y">wafer_yield_summary</div>
+<div class="c2y">웨이퍼 수율 집계</div>
+</div>
+<span class="c3z">v3 · 선택됨</span>
+</div>
+
+<div class="c40">
+<div class="c3x">
+<div class="c41">lot_process_history</div>
+<div class="c2y">Lot 공정 이력</div>
+</div>
+<span class="c42">v2 · 배포됨</span>
+</div>
+
+<div class="c40">
+<div class="c3x">
+<div class="c41">equip_status_now</div>
+<div class="c2y">설비 현재 상태</div>
+</div>
+<span class="c42">v5 · 배포됨</span>
+</div>
+
+<div class="c40">
+<div class="c3x">
+<div class="c41">defect_pareto</div>
+<div class="c2y">불량 유형 파레토</div>
+</div>
+<span class="c42">v1 · 배포됨</span>
+</div>
+
+<div class="c40">
+<div class="c3x">
+<div class="c41">fab_wip_summary</div>
+<div class="c2y">공정별 재공 현황</div>
+</div>
+<span class="c42">v4 · 배포됨</span>
+</div>
+
+<div class="c43">
+<div class="c3x">
+<div class="c41">recipe_param_diff</div>
+<div class="c2y">레시피 파라미터 비교</div>
+</div>
+<span class="c44">미배포</span>
+</div>
+
+</div>
+<div class="c45">배포된 API만 선택할 수 있어요 · 내 워크스페이스 6개</div>
+</div>
+</div>
+
+<div class="c3m">
+<div class="c3n">
+<div class="c3o">API 정보</div>
+<span class="c46">Oracle 19c</span>
+</div>
+<div class="c47">
+<span class="c2m">DB</span>
+<span class="c48">MESDB_F02</span>
+</div>
+<pre class="c49">SELECT lot_id, wafer_id,
+       yield_rate, defect_cnt
+  FROM WAFER_YIELD
+ WHERE lot_id   = :lot_id
+   AND wafer_id = :wafer_id
+   AND factory_id = :factory_id</pre>
+</div>
+
+<div class="c3m">
+<div class="c3o">파라미터 연결</div>
+
+<div class="c4a">
+<div class="c4b">
+<div class="c4c">lot_id</div>
+<div class="c2y">string · 필수</div>
+</div>
+<span class="c4d">start.lot_id</span>
+</div>
+
+<div class="c4a">
+<div class="c4b">
+<div class="c4c">wafer_id</div>
+<div class="c2y">string · 필수</div>
+</div>
+<span class="c4d">start.wafer_id</span>
+</div>
+
+<div class="c4a">
+<div class="c4b">
+<div class="c4c">factory_id</div>
+<div class="c2y">string · 선택</div>
+</div>
+<span class="c4e">F02</span>
+</div>
+
+</div>
+
+<div class="c3m">
+<div class="c3o">출력 컬럼</div>
+<div class="c4f">
+
+<span class="c4g">lot_id</span>
+
+<span class="c4g">wafer_id</span>
+
+<span class="c4g">yield_rate</span>
+
+<span class="c4g">defect_cnt</span>
+
+<span class="c4g">process_step</span>
+
+</div>
+</div>
+
+<div class="c3m">
+<div class="c3o">실행 옵션</div>
+<div class="c4h">
+<div class="c4i">
+<div class="c2y">타임아웃</div>
+<div class="c4j">30s</div>
+</div>
+<div class="c4i">
+<div class="c2y">DuckDB 적재 한도</div>
+<div class="c4j">100,000행</div>
+</div>
+</div>
+</div>
+
+</div>
+</aside>
+
+</main>
+
+<footer class="c4k">
+<div class="cr">
+
+<span class="cs">결과</span>
+
+<span class="cu">입력값</span>
+
+<span class="cu">노드별 실행</span>
+
+</div>
+<div class="c4l">
+<span class="c4m">성공</span>
+<span class="c4n">5개 노드 · 1.42s · 4행</span>
+<span class="c4o">
+<svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 8l4-4 4 4" fill="none" stroke="#4338ca" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+결과 펼치기
+</span>
+</div>
+</footer>
+</div>
+<script src="assets/editor.js"></script>
+</body></html>
