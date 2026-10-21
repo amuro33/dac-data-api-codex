@@ -377,7 +377,7 @@
     return (
       header("DAC", "", a.title, "Data API 노드") +
       '<div class="c3l">' +
-      section("API 선택", '<span class="c3p">MFG Analytics</span>', combo) +
+      section("DATA API 선택", '<span class="c3p">MFG Analytics</span>', combo) +
       section(
         "API 정보",
         '<span class="c46">Oracle 19c</span>',
