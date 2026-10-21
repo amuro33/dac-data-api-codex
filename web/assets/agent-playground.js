@@ -20,6 +20,7 @@
       name: a.name,
       model: a.model,
       prompt: a.prompt,
+      contextTokens: a.contextTokens ?? 8192,
       tools: a.tools.slice().sort(),
       schedule: a.schedule,
     };
@@ -92,7 +93,8 @@
     try {
       const a = await Store.request("/api/agents", "POST", {
         name: "new-agent-" + n,
-        prompt: "조회 결과만 근거로 답합니다.",
+        prompt: MOCK.defaultAgentPrompt,
+        contextTokens: 8192,
         tools: [],
       });
       a._saved = JSON.stringify(pick(a));
@@ -154,6 +156,47 @@
           },
         }),
       ]),
+    );
+    sc.appendChild(
+      h("label", { class: "label" }, [
+        "대화 컨텍스트 크기 (추정 토큰)",
+        h(
+          "select",
+          {
+            class: "select",
+            id: "agent-context-tokens",
+            onchange: (e) => {
+              a.contextTokens = Number(e.target.value);
+              softRefresh();
+            },
+          },
+          [
+            1024,
+            4096,
+            8192,
+            16384,
+            32768,
+            65536,
+            ...(![1024, 4096, 8192, 16384, 32768, 65536].includes(
+              a.contextTokens,
+            )
+              ? [a.contextTokens]
+              : []),
+          ].map((n) =>
+            h("option", {
+              value: n,
+              text: n.toLocaleString() + " tokens",
+              selected: n === a.contextTokens,
+            }),
+          ),
+        ),
+      ]),
+    );
+    sc.appendChild(
+      h("div", {
+        class: "hint",
+        text: "기본 8,192 · 프롬프트와 현재 질문을 우선 포함하고 최근 대화부터 참조합니다. 초과한 과거 대화는 저장된 채로 참조에서만 제외됩니다. LLM 미연결: 실제 모델 토큰 수와 다릅니다.",
+      }),
     );
     var sel = h(
       "select",
@@ -258,7 +301,7 @@
     sc.appendChild(
       h("div", {
         class: "hint",
-        text: "질문에서 Lot/Wafer를 읽고 아래 기간으로 실행합니다. 프롬프트와 모델은 아직 실제 LLM에 연결되지 않습니다.",
+        text: "Lot/Wafer와 아래 기간으로 실행합니다. ‘그 Lot’은 컨텍스트 내 최근 Lot을 참조합니다. 프롬프트는 아직 LLM 응답에 적용되지 않습니다.",
       }),
     );
     sc.appendChild(
@@ -382,6 +425,21 @@
           h("span", { class: "chip ok", text: "완료" }),
         ]),
         h("pre", { text: JSON.stringify(m.args, null, 2) }),
+        m.context
+          ? h("div", {
+              class: "hint",
+              text:
+                "입력 컨텍스트 약 " +
+                m.context.estimatedTokens +
+                " / " +
+                m.context.budget +
+                " tokens · 이전 " +
+                m.context.retainedTurns +
+                "턴 참조 · " +
+                m.context.excludedTurns +
+                "턴 제외",
+            })
+          : null,
         h("details", {}, [
           h("summary", { text: "운영 v" + m.version + " · 실행 결과" }),
           h("pre", { text: JSON.stringify(m.result, null, 2) }),

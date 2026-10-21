@@ -133,6 +133,8 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright"),
       .click();
     await page.locator(".ag-set").waitFor();
     await page.locator(".tool-opt").filter({ hasText: "strict_yield" }).click();
+    await page.locator("#agent-context-tokens").selectOption("4096");
+    a.match(await page.locator(".ag-set textarea").inputValue(), /wafer_cnt/);
     await page.locator(".ag-set .card-head button").click();
     await page.waitForFunction(
       () =>
@@ -142,6 +144,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright"),
     await page.reload();
     await page.locator(".tool-opt.on").waitFor();
     a.match(await page.locator(".tool-opt.on").innerText(), /strict_yield/);
+    a.equal(await page.locator("#agent-context-tokens").inputValue(), "4096");
     await page.locator("#inp").fill("LOT-1199 W001 수율 알려줘");
     await page.getByRole("button", { name: "보내기", exact: true }).click();
     await page.locator(".toolcall").waitFor();
