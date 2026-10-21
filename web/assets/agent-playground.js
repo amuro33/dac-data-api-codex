@@ -301,7 +301,7 @@
     sc.appendChild(
       h("div", {
         class: "hint",
-        text: "Lot/Wafer와 아래 기간으로 실행합니다. ‘그 Lot’은 컨텍스트 내 최근 Lot을 참조합니다. 프롬프트는 아직 LLM 응답에 적용되지 않습니다.",
+        text: "메시지를 보내면 채팅에 조회 조건 입력 폼이 나타납니다. 기본값은 목업 데이터 기준이며 실행 전에 수정할 수 있습니다.",
       }),
     );
     sc.appendChild(
@@ -313,20 +313,6 @@
           a.tools.map((id) => h("option", { value: id, text: id })),
         ),
       ]),
-    );
-    ["start_time", "end_time"].forEach((key, i) =>
-      sc.appendChild(
-        h("label", { class: "label" }, [
-          (i ? "조회 종료 시간" : "조회 시작 시간") + " (KST)",
-          h("input", {
-            class: "input",
-            id: "agent-" + key,
-            type: "datetime-local",
-            value: a[key] || (i ? "2026-10-20T14:00" : "2026-10-19T14:00"),
-            oninput: (e) => (a[key] = e.target.value),
-          }),
-        ]),
-      ),
     );
     setEl.appendChild(sc);
   }
@@ -369,6 +355,7 @@
                   {},
                 );
                 a.msgs = [];
+                delete a._request;
                 renderChat();
               } catch (e) {
                 Shell.toast(e.message);
@@ -379,7 +366,7 @@
       ]),
     );
     var box = h("div", { class: "msgs", id: "msgs" });
-    if (!a.msgs.length)
+    if (!a.msgs.length && !a._request)
       box.appendChild(
         h("div", {
           class: "empty",
@@ -389,6 +376,10 @@
     a.msgs.forEach(function (m) {
       box.appendChild(bubble(m));
     });
+    if (a._request) {
+      box.appendChild(bubble({ r: "user", t: a._request.question }));
+      box.appendChild(inputCard(a));
+    }
     if (pending)
       box.appendChild(
         h("div", {
@@ -412,7 +403,8 @@
       text: "보내기",
       onclick: send,
     });
-    btn.disabled = pending;
+    btn.disabled = pending || !!a._request;
+    ta.disabled = pending || !!a._request;
     chatEl.appendChild(h("div", { class: "composer" }, [ta, btn]));
     box.scrollTop = box.scrollHeight;
   }
@@ -460,11 +452,91 @@
       Shell.toast("사용할 도구를 선택하고 저장하세요.");
       return;
     }
-    const body = {
+    const tool = document.getElementById("agent-tool").value;
+    const fields = toolsById[tool]?.fields;
+    if (!fields) return Shell.toast("도구 목록을 새로고침하세요.");
+    a._request = {
       question: text,
-      tool: document.getElementById("agent-tool").value,
-      start_time: document.getElementById("agent-start_time").value,
-      end_time: document.getElementById("agent-end_time").value,
+      tool,
+      fields,
+      values: Object.fromEntries(fields.map((f) => [f.name, f.def ?? ""])),
+    };
+    renderChat();
+  }
+
+  function inputCard(a) {
+    const request = a._request;
+    const form = h("form", {
+      class: "bub bot agent-input-form",
+      style: "width:100%;max-width:460px;display:grid;gap:12px",
+    });
+    form.appendChild(h("strong", { text: "필요한 데이터를 입력해주세요" }));
+    form.appendChild(
+      h("div", {
+        class: "hint",
+        text: request.tool + " · 목업 기본값 · 실행 전 수정 가능",
+      }),
+    );
+    request.fields.forEach((f) => {
+      const label =
+        {
+          lot_id: "Lot ID",
+          wafer_id: "Wafer ID",
+          start_time: "조회 시작 시간 (KST)",
+          end_time: "조회 종료 시간 (KST)",
+        }[f.name] || f.name;
+      form.appendChild(
+        h("label", { class: "label" }, [
+          label + (f.required ? " *" : ""),
+          h("input", {
+            class: "input",
+            name: f.name,
+            type: f.type === "datetime" ? "datetime-local" : "text",
+            required: !!f.required,
+            value: request.values[f.name],
+            disabled: pending,
+            oninput: (e) => (request.values[f.name] = e.target.value),
+          }),
+        ]),
+      );
+    });
+    if (request.error)
+      form.appendChild(h("div", { role: "alert", text: request.error }));
+    form.appendChild(
+      h("div", { style: "display:flex;gap:8px" }, [
+        h("button", {
+          class: "btn primary",
+          type: "submit",
+          text: pending ? "실행 중…" : "실행",
+          disabled: pending,
+        }),
+        h("button", {
+          class: "btn",
+          type: "button",
+          text: "취소",
+          disabled: pending,
+          onclick: () => {
+            delete a._request;
+            renderChat();
+          },
+        }),
+      ]),
+    );
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      execute(a);
+    };
+    return form;
+  }
+
+  async function execute(a) {
+    if (pending || !a._request) return;
+    if (isDirty(a)) return Shell.toast("설정을 먼저 저장하세요.");
+    const request = a._request;
+    const body = {
+      question: request.question,
+      tool: request.tool,
+      input: request.values,
     };
     pending = true;
     renderChat();
@@ -475,8 +547,9 @@
         body,
       );
       a.msgs = r.messages;
+      delete a._request;
     } catch (e) {
-      Shell.toast(e.message);
+      request.error = e.message;
     } finally {
       pending = false;
       renderChat();

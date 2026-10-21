@@ -147,6 +147,28 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright"),
     a.equal(await page.locator("#agent-context-tokens").inputValue(), "4096");
     await page.locator("#inp").fill("LOT-1199 W001 수율 알려줘");
     await page.getByRole("button", { name: "보내기", exact: true }).click();
+    await page.locator(".agent-input-form").waitFor();
+    a.equal(
+      await page.locator(".ag-set input[type=datetime-local]").count(),
+      0,
+    );
+    a.equal(await page.locator(".toolcall").count(), 0);
+    a.equal(
+      await page.locator(".agent-input-form input[name=lot_id]").inputValue(),
+      "LOT-1199",
+    );
+    await page.screenshot({ path: "test-artifacts/agent-input.png" });
+    await page.locator(".agent-input-form input[name=wafer_id]").fill("W001");
+    await page
+      .locator(".agent-input-form input[name=end_time]")
+      .fill("2026-10-18T14:00");
+    await page.locator(".agent-input-form button[type=submit]").click();
+    await page.locator(".agent-input-form [role=alert]").waitFor();
+    a.equal(await page.locator(".toolcall").count(), 0);
+    await page
+      .locator(".agent-input-form input[name=end_time]")
+      .fill("2026-10-20T14:00");
+    await page.locator(".agent-input-form button[type=submit]").click();
     await page.locator(".toolcall").waitFor();
     a.match(await page.locator(".bub.bot").innerText(), /0.88/);
     await page.locator(".toolcall summary").click();
@@ -167,6 +189,15 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright"),
     await page.reload();
     await page.locator("#inp").waitFor();
     a.equal(await page.locator(".bub").count(), 0);
+    await page.locator("#inp").fill("안녕하세요");
+    await page.getByRole("button", { name: "보내기", exact: true }).click();
+    await page.locator(".agent-input-form").waitFor();
+    await page.locator(".agent-input-form button[type=submit]").click();
+    await page.locator(".toolcall").waitFor();
+    a.match(await page.locator(".bub.bot").innerText(), /3개 그룹/);
+    await page.reload();
+    await page.locator(".toolcall").waitFor();
+    a.equal(await page.locator(".bub.user").innerText(), "안녕하세요");
     console.log(
       "PASS multiple deployed tools, Agent persisted selection, real call, reload and clear",
     );
@@ -191,7 +222,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright"),
         name + " desktop overflow",
       );
     }
-    a.deepEqual(errors, []);
+    a.deepEqual(errors, ["400 " + base + "/api/agents/agent-yield/chat"]); // Deliberate invalid date-range submission above.
     console.log("PASS all pages loaded without asset/runtime errors");
   } finally {
     if (browser) await browser.close();
